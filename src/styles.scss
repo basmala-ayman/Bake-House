@@ -1,1 +1,95 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+$main-color: #74512D;
+$light-color: #f0f3f2;
+$shadow: #543310 0px 2px 4px -1px,
+#AF8F6F 0px 4px 5px 0px,
+#896c50 0px 1px 10px 0px;
+$font-family: "Encode Sans Expanded", sans-serif;
+$rating-color: #6C4E31;
+$main-transition: 0.8s;
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $light-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #745c44;
+  border-radius: 50px;
+  box-shadow: 0 0 20px 50px #543310;
+  border-radius: 2px;
+}
+
+.nav-link {
+  transition: unset !important;
+}
+
+.active-link {
+  background-color: $main-color;
+  color: #fff !important;
+  border-radius: 5px;
+}
+body {
+  font-family: $font-family;
+}
+
+.rating-color {
+  color: $rating-color;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.font-sm {
+  font-size: 12px;
+}
+
+.text-main {
+  color: $main-color;
+}
+
+.text-main-light {
+  color: $light-color;
+}
+
+.bg-main {
+  background-color: $main-color !important;
+}
+
+.bg-main-light {
+  background-color: $light-color !important;
+}
+
+.main-btn {
+  border: unset;
+  cursor: pointer;
+  color: #fff !important;
+  background-color: $main-color !important;
+  padding: 4px 8px;
+  transition: background-color $main-transition;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #AF8F6F !important;
+  }
+
+  &:disabled {
+    background-color: #AF8F6F !important;
+    color: #ffffff8e !important;
+    cursor: not-allowed;
+  }
+}
+
+input:focus {
+  box-shadow: 0 0 0 0.25rem #543310(10 173 10 / 39%) !important;
+  border-color: #AF8F6F !important;
+}
+
