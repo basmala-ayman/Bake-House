@@ -1,0 +1,56 @@
+$dark-color: #543310;
+$alt-dark-color: #74512d;
+$light-color: #f8f4e1;
+$alt-light-color: #af8f6f;
+$error-color: #dc3545;
+$main-transition: 0.8s;
+
+section {
+  background-color: $light-color;
+
+  h1 {
+    color: $dark-color;
+    font-weight: 600;
+  }
+
+  form {
+    input {
+      font-size: 18px;
+      color: $dark-color;
+      caret-color: $dark-color;
+      &::placeholder {
+        color: $alt-light-color;
+      }
+      &::selection {
+        background-color: $dark-color;
+        color: $light-color;
+      }
+    }
+  }
+
+  div:last-child {
+    .main-btn {
+      cursor: pointer;
+      color: $light-color !important;
+      background-color: $dark-color !important;
+      padding: 6px 16px;
+      transition: background-color $main-transition;
+      border-radius: 5px;
+      opacity: 0.95;
+
+      &:hover {
+        opacity: 1;
+        // font-weight: 600;
+      }
+
+      &:disabled {
+        opacity: 0.8;
+        color: $light-color !important;
+        cursor: not-allowed;
+      }
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+}

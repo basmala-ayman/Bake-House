@@ -1,0 +1,29 @@
+$dark-color: #543310;
+$alt-dark-color: #74512d;
+$light-color: #f8f4e1;
+$alt-light-color: #af8f6f;
+
+.navbar {
+  background-color: $light-color;
+  .nav-item {
+    .nav-link {
+      color: $dark-color;
+    }
+    .nav-link.active {
+      font-weight: 600;
+    }
+  }
+  a.btn {
+    background-color: $dark-color;
+    color: $light-color;
+  }
+  .dropdown {
+    .dropdown-menu {
+      background-color: $light-color;
+      border-color: $dark-color;
+      a {
+        color: $dark-color;
+      }
+    }
+  }
+}

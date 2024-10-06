@@ -1,16 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
-$main-color: #74512D;
-$light-color: #f0f3f2;
-$shadow: #543310 0px 2px 4px -1px,
-#AF8F6F 0px 4px 5px 0px,
-#896c50 0px 1px 10px 0px;
+
+$dark-color: #543310;
+$alt-dark-color: #74512d;
+$light-color: #f8f4e1;
+$alt-light-color: #af8f6f;
+$error-color: #dc3545;
+
+// $alt-dark-color: #74512D;
+// $light-color: #f0f3f2;
+$shadow: #543310 0px 2px 4px -1px, #af8f6f 0px 4px 5px 0px,
+  #896c50 0px 1px 10px 0px;
 $font-family: "Encode Sans Expanded", sans-serif;
-$rating-color: #6C4E31;
+$rating-color: #6c4e31;
 $main-transition: 0.8s;
-
-
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -32,7 +36,7 @@ $main-transition: 0.8s;
 }
 
 .active-link {
-  background-color: $main-color;
+  background-color: $alt-dark-color;
   color: #fff !important;
   border-radius: 5px;
 }
@@ -53,7 +57,7 @@ body {
 }
 
 .text-main {
-  color: $main-color;
+  color: $alt-dark-color;
 }
 
 .text-main-light {
@@ -61,35 +65,44 @@ body {
 }
 
 .bg-main {
-  background-color: $main-color !important;
+  background-color: $alt-dark-color !important;
 }
 
 .bg-main-light {
   background-color: $light-color !important;
 }
 
-.main-btn {
-  border: unset;
-  cursor: pointer;
-  color: #fff !important;
-  background-color: $main-color !important;
-  padding: 4px 8px;
-  transition: background-color $main-transition;
-  border-radius: 5px;
+// .main-btn {
+//   border: unset;
+//   cursor: pointer;
+//   color: #fff !important;
+//   background-color: $alt-dark-color !important;
+//   padding: 4px 8px;
+//   transition: background-color $main-transition;
+//   border-radius: 5px;
 
-  &:hover {
-    background-color: #AF8F6F !important;
-  }
+//   &:hover {
+//     background-color: #af8f6f !important;
+//   }
 
-  &:disabled {
-    background-color: #AF8F6F !important;
-    color: #ffffff8e !important;
-    cursor: not-allowed;
-  }
+//   &:disabled {
+//     background-color: #af8f6f !important;
+//     color: #ffffff8e !important;
+//     cursor: not-allowed;
+//   }
+// }
+
+
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-input:focus {
-  box-shadow: 0 0 0 0.25rem #543310(10 173 10 / 39%) !important;
-  border-color: #AF8F6F !important;
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent !important;
 }
-

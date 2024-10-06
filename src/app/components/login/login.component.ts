@@ -1,19 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private router: Router) {}
-
-  errMsg: string = "";
+  // errMsg: string = '';
   isLoading: boolean = false;
 
   // فرضية: بيانات المستخدمين المخزنة هنا في مصفوفة (يمكنك استبدالها بالتحقق من API أو خدمة)
@@ -24,15 +40,28 @@ export class LoginComponent {
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [
+      Validators.required,
+      // Validators.minLength(6),
+    ]),
   });
+
+  constructor(private router: Router) {}
+
+  hide = signal(true);
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
 
   handleLogin(): void {
     const userData = this.loginForm.value;
     this.isLoading = true;
 
     // تحقق من بيانات تسجيل الدخول مقابل البيانات المخزنة
-    const user = this.storedUsers.find(u => u.email === userData.email && u.password === userData.password);
+    const user = this.storedUsers.find(
+      (u) => u.email === userData.email && u.password === userData.password
+    );
 
     if (user) {
       // تسجيل دخول ناجح
@@ -40,7 +69,7 @@ export class LoginComponent {
       this.router.navigate(['/home']);
     } else {
       // تسجيل دخول فاشل
-      this.errMsg = 'Invalid email or password.';
+      // box say that login failed
     }
 
     this.isLoading = false;

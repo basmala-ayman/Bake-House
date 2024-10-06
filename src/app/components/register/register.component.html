@@ -1,63 +1,79 @@
-<section class="w-75 mx-auto shadow rounded p-4 my-5 bg-main-light">
-    <h1 class="my-3 text-center">Register Now</h1>
-    <form [formGroup]="registerForm" (ngSubmit)="handleForm()">
-        <!-- Name Field -->
-        <div class="form-item mb-3">
-            <label for="name">Name</label>
-            <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter your name">
-            <div *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched" class="alert alert-danger mt-2">
-                <p class="mb-0" *ngIf="registerForm.get('name')?.getError('required')">Name is required</p>
-                <p class="mb-0" *ngIf="registerForm.get('name')?.getError('minlength')">Min length should be 3 letters at least</p>
-                <p class="mb-0" *ngIf="registerForm.get('name')?.getError('maxlength')">Max length should be 20 letters</p>
-            </div>
-        </div>
+<section class="w-75 mx-auto shadow rounded p-4 my-5">
+  <h1 class="my-3 text-center">Register Now</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="handleForm()">
 
-        <!-- Email Field -->
-        <div class="form-item mb-3">
-            <label for="email">Email</label>
-            <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email">
-            <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="alert alert-danger mt-2">
-                <p class="mb-0" *ngIf="registerForm.get('email')?.getError('required')">Email is required</p>
-                <p class="mb-0" *ngIf="registerForm.get('email')?.getError('email')">Invalid email</p>
-            </div>
-        </div>
+    <!-- Name Field -->
+    <mat-form-field class="w-100">
+      <input type="text" matInput formControlName="name" placeholder="Enter your Full Name">
+      <!-- name Validation Messages -->
+      <mat-error *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+        Name is required
+      </mat-error>
+    </mat-form-field>
 
-        <!-- Password Field -->
-        <div class="form-item mb-3">
-            <label for="password">Password</label>
-            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter your password">
-            <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert alert-danger mt-2">
-                <p class="mb-0" *ngIf="registerForm.get('password')?.getError('required')">Password is required</p>
-                <p class="mb-0" *ngIf="registerForm.get('password')?.getError('pattern')">Password must be at least 6 characters</p>
-            </div>
-        </div>
+    <!-- Email Field -->
+    <mat-form-field class="w-100">
+      <input type="email" matInput formControlName="email" placeholder="Enter your email">
+      <!-- Email Validation Messages -->
+      <mat-error
+        *ngIf="registerForm.get('email')?.hasError('email') && !registerForm.get('email')?.hasError('required')">
+        Please enter a <strong>valid</strong> email address
+      </mat-error>
+      <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-        <!-- RePassword Field -->
-        <div class="form-item mb-3">
-            <label for="rePassword">RePassword</label>
-            <input formControlName="rePassword" type="password" class="form-control" id="rePassword" placeholder="Confirm your password">
-            <div *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched" class="alert alert-danger mt-2">
-                <p class="mb-0" *ngIf="registerForm.get('rePassword')?.getError('required')">RePassword is required</p>
-                <p class="mb-0" *ngIf="registerForm.get('rePassword')?.getError('mismatch')">Password confirmation is incorrect</p>
-            </div>
-        </div>
+    <!-- Password Field -->
+    <mat-form-field class="w-100">
+      <input id="password" matInput placeholder="Enter your password" formControlName="password"
+        [type]="hide() ? 'password' : 'text'" />
+      @if (registerForm.get('password')?.hasError('required')) {
+      <mat-error>Password is <strong>required</strong></mat-error>
+      }
+      @if (registerForm.get('password')?.hasError('minlength')) {
+      <mat-error>Password must be <strong>at least 6 characters</strong></mat-error>
+      }
+      <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()">
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
 
-        <!-- Phone Field -->
-        <div class="form-item mb-3">
-            <label for="phone">Phone</label>
-            <input formControlName="phone" type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
-            <div *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched" class="alert alert-danger mt-2">
-                <p class="mb-0" *ngIf="registerForm.get('phone')?.getError('required')">Phone is required</p>
-                <p class="mb-0" *ngIf="registerForm.get('phone')?.getError('pattern')">Accept only Egyptian phone numbers</p>
-            </div>
-        </div>
+    <!-- RePassword Field -->
+    <mat-form-field class="w-100">
+      <input id="rePassword" matInput placeholder="Confirm your password" formControlName="rePassword"
+        [type]="hide() ? 'password' : 'text'" />
+      @if (registerForm.get('rePassword')?.getError('required')) {
+      <mat-error>Password is <strong>required</strong></mat-error>
+      }
+      @if (registerForm.get('rePassword')?.getError('mismatch')) {
+      <mat-error>Password confirmation is <strong>incorrect</strong></mat-error>
+      }
+      <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()">
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
 
-        <!-- Submit Button -->
-        <button [disabled]="registerForm.invalid" class="main-btn mt-2">
-            Register <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
-        </button>
-    </form>
+    <!-- Phone Field -->
+    <mat-form-field class="w-100">
+      <span matTextPrefix>+2 &nbsp;</span>
+      <input type="tel" matInput placeholder="01234567890">
+      @if (registerForm.get('phone')?.hasError('required')) {
+      <mat-error>Phone is <strong>required</strong></mat-error>
+      }
+      @if (registerForm.get('phone')?.getError('pattern')) {
+      <mat-error>Accept only <strong>Egyptian</strong> phone numbers</mat-error>
+      }
+    </mat-form-field>
 
-    <!-- Error Message -->
-    <p *ngIf="errMsg" class="alert alert-danger mb-0">{{errMsg}}</p>
+    <!-- Submit Button -->
+    <button [disabled]="registerForm.invalid" class="main-btn mt-2">
+      Register <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
+    </button>
+  </form>
+
+  <!-- Error Message -->
+  <!-- <p *ngIf="errMsg" class="alert alert-danger mb-0">{{errMsg}}</p> -->
 </section>
