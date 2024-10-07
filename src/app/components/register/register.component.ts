@@ -17,13 +17,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserService } from '../../Service/user.service';
 import { User } from '../../interfaces/user';
 
-// interface User {
-//   name: string;
-//   email: string;
-//   password: string;
-//   phone: string;
-// }
-
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -45,16 +38,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     // Access the users array from the service
     if (localStorage.getItem('allUsers')) {
-      this.users = JSON.parse(localStorage.getItem('allUsers') || '[]');      
+      this.users = JSON.parse(localStorage.getItem('allUsers') || '[]');
     }
   }
   constructor(private router: Router) {}
 
   registerForm: FormGroup = new FormGroup(
     {
-      name: new FormControl('', [
-        Validators.required,
-      ]),
+      name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,

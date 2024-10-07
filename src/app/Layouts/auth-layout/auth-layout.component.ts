@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavAuthComponent } from '../../components/nav-auth/nav-auth.component';
 import { RouterOutlet } from '@angular/router';
+import { NavAuthComponent } from '../../components/nav-auth/nav-auth.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
