@@ -8,6 +8,11 @@ import { HomeComponent } from './components/home/home.component';
 import { MainLayoutComponent } from './Layouts/main-layout/main-layout.component';
 import { CakeComponent } from './components/cake/cake.component';
 import { BakeryComponent } from './components/bakery/bakery.component';
+import { AllProductsComponent } from './components/all-products/all-products.component';
+import { ChocolateComponent } from './components/chocolate/chocolate.component';
+import { OffersComponent } from './components/offers/offers.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 export const routes: Routes = [
   {
@@ -20,13 +25,19 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'home',
+    path: 'user',
     component: MainLayoutComponent,
     children: [
-      { path: 'home', component: HomeComponent, title: 'Home'},
-      { path: 'cake', component: CakeComponent, title: 'Cake'},
-      { path: 'bakery', component: BakeryComponent, title: 'Bakery'}
-    ]
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent, title: 'Home' },
+      { path: 'allProduct', component: AllProductsComponent, title: 'AllProduct' },
+      { path: 'cake', component: CakeComponent, title: 'Cake' },
+      { path: 'bakery', component: BakeryComponent, title: 'Bakery' },
+      { path: 'chocolate', component: ChocolateComponent, title: 'Chocolate' },
+      { path: 'offers', component: OffersComponent, title: 'Offers' },
+      { path: 'about', component: AboutComponent, title: 'About' },
+      { path: 'contact', component: ContactComponent, title: 'Contact' },
+    ],
   },
 ];
 

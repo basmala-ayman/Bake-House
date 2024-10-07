@@ -1,4 +1,4 @@
-<nav class="navbar   navbar-expand-lg ">
+<nav class="navbar fixed-top  navbar-expand-lg">
   <div class="container-fluid">
 
     <a class="navbar-brand p-0" href="#">
@@ -14,15 +14,19 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="home" routerLinkActive="active">Home</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Products
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="cake" routerLinkActive="active">Cake</a></li>
-            <li><a class="dropdown-item" routerLink="bakery" routerLinkActive="active">Bakery</a></li>
-            <li><a class="dropdown-item" routerLink="chocolate" routerLinkActive="active">Chocolate</a></li>
-          </ul>
+        <li class="nav-item">
+          <div class="btn-group">
+            <button type="button" class="btn" routerLink="allProduct" routerLinkActive="active">Products</button>
+            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="cake" routerLinkActive="active">Cake</a></li>
+              <li><a class="dropdown-item" routerLink="bakery" routerLinkActive="active">Bakery</a></li>
+              <li><a class="dropdown-item" routerLink="chocolate" routerLinkActive="active">Chocolate</a></li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="offers" routerLinkActive="active">Offers</a>
@@ -35,8 +39,10 @@
         </li>
       </ul>
       <!-- here we want to show the username not login and sign up -->
-      <a class="btn me-2" href="#" role="button">Log In</a>
-      <a class="btn me-2" href="#" role="button">Sign Up</a>
+      <div class="btns">
+        <span class="name me-2">Hello, {{firstName[0]}}</span>
+        <a class="btn" role="button" >Sign Out</a>
+      </div>
     </div>
   </div>
 </nav>

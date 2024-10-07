@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
 
     if (isExistUser) {
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
-      this.router.navigate(['/home']);
+      this.router.navigate(['/user']);
     } else {
       const modalElement = document.getElementById('staticBackdrop');
       if (modalElement) {
