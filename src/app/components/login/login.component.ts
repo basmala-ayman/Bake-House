@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormControl,
@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { UserService } from '../../Service/user.service';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-login',
@@ -28,50 +30,55 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
-  // errMsg: string = '';
-  isLoading: boolean = false;
-
-  // فرضية: بيانات المستخدمين المخزنة هنا في مصفوفة (يمكنك استبدالها بالتحقق من API أو خدمة)
-  private storedUsers = [
-    { email: 'test@example.com', password: 'password123' },
-    { email: 'user1@example.com', password: 'password456' },
-  ];
+export class LoginComponent implements OnInit {
+  users: User[] = [];
+  ngOnInit() {
+    // localStorage.clear();
+    // Access the users array from the service
+    if (localStorage.getItem('allUsers')) {
+      this.users = JSON.parse(localStorage.getItem('allUsers') || '[]');
+      
+    } else {
+      localStorage.setItem('allUsers', JSON.stringify(UserService.getUsers()));
+      this.users = UserService.getUsers();
+    }
+  }
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      // Validators.minLength(6),
-    ]),
+    password: new FormControl('', [Validators.required]),
   });
 
   constructor(private router: Router) {}
 
   hide = signal(true);
-  clickEvent(event: MouseEvent) {
+  clickEvent() {
     this.hide.set(!this.hide());
-    event.stopPropagation();
   }
 
   handleLogin(): void {
     const userData = this.loginForm.value;
-    this.isLoading = true;
+    let currentUser: User = {
+      name: '',
+      email: '',
+      password: '',
+      phone: '',
+    };
 
-    // تحقق من بيانات تسجيل الدخول مقابل البيانات المخزنة
-    const user = this.storedUsers.find(
-      (u) => u.email === userData.email && u.password === userData.password
-    );
+    const isExistUser = this.users.find((u) => {
+      currentUser = u;
+      return u.email === userData.email && u.password === userData.password;
+    });
 
-    if (user) {
-      // تسجيل دخول ناجح
-      console.log('Login successful!');
+    if (isExistUser) {
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
       this.router.navigate(['/home']);
     } else {
-      // تسجيل دخول فاشل
-      // box say that login failed
+      const modalElement = document.getElementById('staticBackdrop');
+      if (modalElement) {
+        const modal = new (window as any).bootstrap.Modal(modalElement); // Access the modal via window.bootstrap
+        modal.show(); // This will show the modal
+      }
     }
-
-    this.isLoading = false;
   }
 }

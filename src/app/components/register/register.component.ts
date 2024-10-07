@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormControl,
@@ -14,13 +14,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { UserService } from '../../Service/user.service';
+import { User } from '../../interfaces/user';
 
-interface User {
-  name: string;
-  email: string;
-  password: string;
-  phone: string;
-}
+// interface User {
+//   name: string;
+//   email: string;
+//   password: string;
+//   phone: string;
+// }
 
 @Component({
   selector: 'app-register',
@@ -37,16 +39,22 @@ interface User {
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
-  constructor(private router: Router) {}
+export class RegisterComponent implements OnInit {
+  users: User[] = [];
 
-  // mismatch: boolean = false;
-  errMsg: string = '';
-  isLoading: boolean = false;
+  ngOnInit() {
+    // Access the users array from the service
+    if (localStorage.getItem('allUsers')) {
+      this.users = JSON.parse(localStorage.getItem('allUsers') || '[]');      
+    }
+  }
+  constructor(private router: Router) {}
 
   registerForm: FormGroup = new FormGroup(
     {
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [
+        Validators.required,
+      ]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
@@ -64,40 +72,39 @@ export class RegisterComponent {
   confirmPassword(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const rePassword = control.get('rePassword')?.value;
-
     return password === rePassword ? null : { mismatch: true };
   }
 
   hide = signal(true);
-  clickEvent(event: MouseEvent) {
+  clickEvent() {
     this.hide.set(!this.hide());
-    event.stopPropagation();
+  }
+
+  toLogIn(): void {
+    this.router.navigate(['/login']);
   }
 
   handleForm(): void {
-    const userData: User = this.registerForm.value; // استخدام واجهة User
-    this.isLoading = true;
+    const newUser: User = this.registerForm.value;
 
-    const existingUsers: User[] = JSON.parse(
-      localStorage.getItem('users') || '[]'
+    // if the email is already exist
+    const isExistingUser = this.users.some(
+      (user: User) => user.email === newUser.email
     );
 
-    // التحقق إذا كان المستخدم موجوداً بالفعل
-    const isExistingUser = existingUsers.some(
-      (user: User) => user.email === userData.email
-    ); // تحديد نوع user
     if (isExistingUser) {
-      this.errMsg = 'This email is already registered.';
-      this.isLoading = false;
+      const modalElement = document.getElementById('staticBackdrop');
+      if (modalElement) {
+        const modal = new (window as any).bootstrap.Modal(modalElement); // Access the modal via window.bootstrap
+        modal.show(); // This will show the modal
+      }
+      // this.isLoading = false;
       return;
     }
 
-    // إضافة المستخدم الجديد
-    existingUsers.push(userData);
-    localStorage.setItem('users', JSON.stringify(existingUsers));
-
-    // console.log('Registration successful!', userData);
+    // add new user to our all users
+    UserService.pushUser(newUser);
+    localStorage.setItem('allUsers', JSON.stringify(UserService.getUsers()));
     this.router.navigate(['/login']);
-    this.isLoading = false;
   }
 }

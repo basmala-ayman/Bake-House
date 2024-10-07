@@ -6,7 +6,9 @@ $error-color: #dc3545;
 $main-transition: 0.8s;
 
 section {
+  width: 80%;
   background-color: $light-color;
+  padding: 32px;
 
   h1 {
     color: $dark-color;
@@ -30,6 +32,7 @@ section {
 
   div:last-child {
     .main-btn {
+      border: none;
       cursor: pointer;
       color: $light-color !important;
       background-color: $dark-color !important;
@@ -40,7 +43,6 @@ section {
 
       &:hover {
         opacity: 1;
-        // font-weight: 600;
       }
 
       &:disabled {
@@ -49,8 +51,41 @@ section {
         cursor: not-allowed;
       }
     }
+    .btn {
+      color: $light-color !important;
+      background-color: $dark-color !important;
+    }
     a {
       cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  section {
+    width: 95%;
+    padding: 28px;
+    &>h1 {
+      font-size: 52px !important;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  section {
+    width: 100%;
+    padding: 20px;
+    &>h1 {
+      font-size: 42px !important;
+    }
+  }
+}
+
+@media (max-width: 399px) {
+  section {
+    padding: 15px 10px;
+    &>h1 {
+      font-size: 36px !important;
     }
   }
 }

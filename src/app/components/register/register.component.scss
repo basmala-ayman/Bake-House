@@ -7,6 +7,8 @@ $main-transition: 0.8s;
 
 section {
   background-color: $light-color;
+  width: 80%;
+  padding: 32px;
 
   h1 {
     color: $dark-color;
@@ -28,6 +30,7 @@ section {
     }
     .main-btn {
       cursor: pointer;
+      border: none;
       color: $light-color !important;
       background-color: $dark-color !important;
       padding: 6px 16px;
@@ -44,6 +47,43 @@ section {
         color: $light-color !important;
         cursor: not-allowed;
       }
+    }
+    .modal-footer {
+      .btn {
+        border: none;
+        color: $light-color !important;
+        background-color: $dark-color !important;
+        padding: 6px 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  section {
+    width: 95%;
+    padding: 28px;
+    & > h1 {
+      font-size: 52px !important;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  section {
+    width: 100%;
+    padding: 20px;
+    & > h1 {
+      font-size: 42px !important;
+    }
+  }
+}
+
+@media (max-width: 399px) {
+  section {
+    padding: 15px 10px;
+    & > h1 {
+      font-size: 36px !important;
     }
   }
 }

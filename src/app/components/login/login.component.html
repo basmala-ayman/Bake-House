@@ -1,6 +1,7 @@
-<section class="w-75 mx-auto shadow rounded p-4 my-5">
-  <h1 class="my-3 text-center">Login Now</h1>
+<section class="mx-auto shadow rounded my-5">
+  <h1 class="text-center">Login Now</h1>
   <form class="w-100" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+    <!-- Email Field -->
     <mat-form-field class="w-100">
       <input type="email" matInput formControlName="email" placeholder="Enter your email">
       <!-- Email Validation Messages -->
@@ -12,23 +13,42 @@
       </mat-error>
     </mat-form-field>
 
+    <!-- Password Field -->
     <mat-form-field class="w-100">
       <input matInput placeholder="Enter your password" formControlName="password"
         [type]="hide() ? 'password' : 'text'" />
       @if (loginForm.get('password')?.hasError('required')) {
       <mat-error>Password is <strong>required</strong></mat-error>
       }
-      <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+      <a mat-icon-button matSuffix (click)="clickEvent()" [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hide()">
         <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
+      </a>
     </mat-form-field>
 
     <!-- Submit Button and Link -->
     <div class="d-flex justify-content-between align-items-center mt-2">
-      <button [disabled]="loginForm.invalid" class="main-btn">
-        Login <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
-      </button>
+      <button type="submit" [disabled]="loginForm.invalid" class="main-btn">Login</button>
+      <!-- Modal if login failed-->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-4 m-0" id="staticBackdropLabel">Login Failed</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-danger fs-5">
+              Your Information is not Correct!!
+              <br>
+              Please, try again!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <a routerLink="/forget" class="link-primary">Forget Password</a>
     </div>
   </form>

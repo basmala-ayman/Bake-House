@@ -17,8 +17,22 @@ $alt-light-color: #AF8F6F;
     opacity: 0.95;
   }
   a.active-link{
-    font-weight: 600;
+    font-weight: 500;
     outline: 3px solid $alt-light-color;
     opacity: 1;
+  }
+  @media (max-width: 767px) {
+    .nav-link{
+      text-align: center;
+    }
+    .btns{
+      a{
+        width: 100%;
+        margin: 0;
+        &:last-child{
+          margin-top: 10px !important;
+        }
+      }
+    }
   }
 }
