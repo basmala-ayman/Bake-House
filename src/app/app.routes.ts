@@ -6,7 +6,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { MainLayoutComponent } from './Layouts/main-layout/main-layout.component';
-import { CakeComponent } from './components/cake/cake.component';
 import { BakeryComponent } from './components/bakery/bakery.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { ChocolateComponent } from './components/chocolate/chocolate.component';
@@ -14,6 +13,7 @@ import { OffersComponent } from './components/offers/offers.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { CakeComponent } from './components/cake/cake.component';
 
 export const routes: Routes = [
   {

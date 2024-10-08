@@ -7,13 +7,13 @@ $section-padding: 90px;
 
 .container-xl {
   padding: $section-padding 0;
-  h1{
+  h1 {
     text-align: center;
     color: $dark-color;
     margin: 0 0 60px;
     position: relative;
-    &::after{
-      content: '';
+    &::after {
+      content: "";
       position: absolute;
       bottom: -15px;
       left: 50%;
@@ -25,7 +25,6 @@ $section-padding: 90px;
   }
   .content {
     display: grid;
-    // background-color: lightcoral;
     grid-template-columns: repeat(auto-fill, minmax(266px, 1fr));
     gap: 30px;
     .card {
@@ -33,23 +32,44 @@ $section-padding: 90px;
       padding-top: 25px;
     }
     .item {
-      // background-color: #eee;
       text-align: center;
       color: $dark-color;
       transition: 0.3s ease;
+      position: relative;
       img {
         margin: auto;
         width: 65% !important;
         border: none;
-        // background-color: #777;
         object-fit: contain;
         transition: transform 0.5s ease;
         &.card-img-top {
           border-radius: 0;
           border: none;
         }
-        &:hover{
+        &:hover {
           transform: scale(1.1);
+        }
+      }
+      .warning-label {
+        position: absolute;
+        top: 0;
+        right: 15px;
+        width: 40px;
+        padding: 10px 10px 30px;
+        font-size: 16px;
+        font-weight: 500;
+        writing-mode: vertical-lr;
+        background-color: #dc3545;
+        color: white;
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          border-bottom: 15px solid white;
+          border-style: solid;
+          border-color: transparent transparent white;
+          border-width: 20px;
         }
       }
       h5 {
@@ -61,28 +81,24 @@ $section-padding: 90px;
         font-weight: 500;
         font-size: 20px;
       }
-      i {
+      .cart-icon {
         padding: 13px;
-        margin-top: 25px;
+        margin-top: 30px;
         border-radius: 50%;
         font-size: 20px;
         color: $alt-dark-color;
-        // border: 1px solid $dark-color;
         box-shadow: $dark-color 0px 0px 8px -2px;
-        // opacity: 0.85;
-        transition: color 0.3s ease;
+        transition: color 0.3s ease, transform 0.3s ease;
         cursor: pointer;
         &:hover {
           color: $dark-color;
-          // opacity: 1;
-          // background-color: $light-background;
+          transform: translateY(-5px);
         }
       }
-      // transform: translateY(0);
       &:hover {
         transform: translateY(-10px);
-        box-shadow: $dark-color 0px 2px 8px -5px, $alt-light-color 0px 4px 5px 0px,
-          #896c50 0px 1px 10px 0px;
+        box-shadow: $dark-color 0px 2px 8px -5px,
+          $alt-light-color 0px 4px 5px 0px, #896c50 0px 1px 10px 0px;
       }
     }
   }
