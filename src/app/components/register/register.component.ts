@@ -36,11 +36,20 @@ export class RegisterComponent implements OnInit {
   users: User[] = [];
 
   ngOnInit() {
-    // Access the users array from the service
     if (localStorage.getItem('allUsers')) {
       this.users = JSON.parse(localStorage.getItem('allUsers') || '[]');
     }
+
+    // Check password and rePassword in real-time
+    this.registerForm.get('password')?.valueChanges.subscribe(() => {
+      this.registerForm.get('rePassword')?.updateValueAndValidity();
+    });
+
+    this.registerForm.get('rePassword')?.valueChanges.subscribe(() => {
+      this.registerForm.get('rePassword')?.updateValueAndValidity();
+    });
   }
+
   constructor(private router: Router) {}
 
   registerForm: FormGroup = new FormGroup(
@@ -63,6 +72,8 @@ export class RegisterComponent implements OnInit {
   confirmPassword(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const rePassword = control.get('rePassword')?.value;
+    
+    // إرجاع خطأ إذا كانت الحقول مختلفة
     return password === rePassword ? null : { mismatch: true };
   }
 
@@ -78,7 +89,6 @@ export class RegisterComponent implements OnInit {
   handleForm(): void {
     const newUser: User = this.registerForm.value;
 
-    // if the email is already exist
     const isExistingUser = this.users.some(
       (user: User) => user.email === newUser.email
     );
@@ -86,14 +96,12 @@ export class RegisterComponent implements OnInit {
     if (isExistingUser) {
       const modalElement = document.getElementById('staticBackdrop');
       if (modalElement) {
-        const modal = new (window as any).bootstrap.Modal(modalElement); // Access the modal via window.bootstrap
-        modal.show(); // This will show the modal
+        const modal = new (window as any).bootstrap.Modal(modalElement);
+        modal.show();
       }
-      // this.isLoading = false;
       return;
     }
 
-    // add new user to our all users
     UserService.pushUser(newUser);
     localStorage.setItem('allUsers', JSON.stringify(UserService.getUsers()));
     this.router.navigate(['/login']);

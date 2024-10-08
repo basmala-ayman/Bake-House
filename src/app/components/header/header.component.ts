@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -9,6 +10,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  currentUser = JSON.parse(localStorage.getItem('currentUser') || '');
-  firstName = this.currentUser.name.split(' ');
+  currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+  firstName = this.currentUser.name ? this.currentUser.name.split(' ') : ['User'];
+
+  constructor(private router: Router) {}
+
+  signOut() {
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['login']); // Change 'login' to your login route
+  }
 }

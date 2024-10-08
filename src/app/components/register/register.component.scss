@@ -87,3 +87,13 @@ section {
     }
   }
 }
+
+.link-primary {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer; /* يجعل الفأرة تظهر كيد عندما تحوم على الرابط */
+}
+
+.link-primary:hover {
+  color: darkblue; /* يغير اللون عند التحويم */
+}

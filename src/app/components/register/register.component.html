@@ -3,7 +3,7 @@
   <form [formGroup]="registerForm" (ngSubmit)="handleForm()">
     <!-- Name Field -->
     <mat-form-field class="w-100">
-      <input type="text" matInput formControlName="name" placeholder="Enter your Full Name">
+      <input type="text" matInput formControlName="name" placeholder="Enter your Full Name" />
       <!-- name Validation Messages -->
       <mat-error *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
         Name is required
@@ -12,10 +12,11 @@
 
     <!-- Email Field -->
     <mat-form-field class="w-100">
-      <input type="email" matInput formControlName="email" placeholder="Enter your email">
+      <input type="email" matInput formControlName="email" placeholder="Enter your email" />
       <!-- Email Validation Messages -->
       <mat-error
-        *ngIf="registerForm.get('email')?.hasError('email') && !registerForm.get('email')?.hasError('required')">
+        *ngIf="registerForm.get('email')?.hasError('email') && !registerForm.get('email')?.hasError('required')"
+      >
         Please enter a <strong>valid</strong> email address
       </mat-error>
       <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
@@ -25,50 +26,56 @@
 
     <!-- Password Field -->
     <mat-form-field class="w-100">
-      <input type="password" matInput placeholder="Enter your password" formControlName="password"
-        [type]="hide() ? 'password' : 'text'" />
-      @if (registerForm.get('password')?.hasError('required')) {
-      <mat-error>Password is <strong>required</strong></mat-error>
-      }
-      @if (registerForm.get('password')?.hasError('minlength')) {
-      <mat-error>Password must be <strong>at least 6 characters</strong></mat-error>
-      }
-      <a mat-icon-button matSuffix (click)="clickEvent()" [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide()">
-        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input
+        type="password"
+        matInput
+        placeholder="Enter your password"
+        formControlName="password"
+        [type]="hide() ? 'password' : 'text'"
+      />
+      <mat-error *ngIf="registerForm.get('password')?.hasError('required')">Password is <strong>required</strong></mat-error>
+      <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
+        Password must be <strong>at least 6 characters</strong>
+      </mat-error>
+      <a mat-icon-button matSuffix (click)="clickEvent()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
       </a>
     </mat-form-field>
 
     <!-- RePassword Field -->
     <mat-form-field class="w-100">
-      <input type="password" matInput placeholder="Confirm your password" formControlName="rePassword"
-        [type]="hide() ? 'password' : 'text'" />
-      @if (registerForm.get('rePassword')?.hasError('required')) {
-      <mat-error>Password is <strong>required</strong></mat-error>
-      }
-      @if (registerForm.hasError('mismatch')) {
-      <mat-error>Password confirmation is <strong>incorrect</strong></mat-error>
-      }
-      <a mat-icon-button matSuffix (click)="clickEvent()" [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide()">
-        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input
+        type="password"
+        matInput
+        placeholder="Confirm your password"
+        formControlName="rePassword"
+        [type]="hide() ? 'password' : 'text'"
+      />
+      <mat-error *ngIf="registerForm.get('rePassword')?.hasError('required')">Password is <strong>required</strong></mat-error>
+      <mat-error *ngIf="registerForm.hasError('mismatch')">Password confirmation is <strong>incorrect</strong></mat-error>
+      <a mat-icon-button matSuffix (click)="clickEvent()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
       </a>
     </mat-form-field>
 
     <!-- Phone Field -->
     <mat-form-field class="w-100">
       <span matTextPrefix>+2 &nbsp;</span>
-      <input type="tel" matInput placeholder="01234567890" formControlName="phone">
-      @if (registerForm.get('phone')?.getError('required')) {
-      <mat-error>Phone is <strong>required</strong></mat-error>
-      }
-      @if (registerForm.get('phone')?.getError('pattern')) {
-      <mat-error>Accept only <strong>Egyptian</strong> phone numbers</mat-error>
-      }
+      <input type="tel" matInput placeholder="01234567890" formControlName="phone" />
+      <mat-error *ngIf="registerForm.get('phone')?.getError('required')">Phone is <strong>required</strong></mat-error>
+      <mat-error *ngIf="registerForm.get('phone')?.getError('pattern')">
+        Accept only <strong>Egyptian</strong> phone numbers
+      </mat-error>
     </mat-form-field>
 
     <!-- Submit Button -->
-    <button [disabled]="registerForm.invalid" class="main-btn mt-2">Register</button>
+    <div class="d-flex justify-content-between align-items-center">
+      <button [disabled]="registerForm.invalid" class="main-btn mt-2">Register</button>
+      <a  class="link-primary" (click)="toLogIn()" >Already have an Account?</a>
+
+
+    </div>
+
     <!-- Modal if register failed-->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -80,7 +87,7 @@
           </div>
           <div class="modal-body text-danger fs-5">
             Your Email is already Exist.
-            <br>
+            <br />
             Please, Log In!
           </div>
           <div class="modal-footer">

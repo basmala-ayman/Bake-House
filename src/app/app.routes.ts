@@ -13,6 +13,7 @@ import { ChocolateComponent } from './components/chocolate/chocolate.component';
 import { OffersComponent } from './components/offers/offers.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent, title: 'Login' },
       { path: 'register', component: RegisterComponent, title: 'Register' },
+      { path: 'forgetPassword', component: ForgetPasswordComponent ,title: 'ForgetPassword'},
     ],
   },
   {
@@ -37,6 +39,7 @@ export const routes: Routes = [
       { path: 'offers', component: OffersComponent, title: 'Offers' },
       { path: 'about', component: AboutComponent, title: 'About' },
       { path: 'contact', component: ContactComponent, title: 'Contact' },
+     
     ],
   },
 ];

@@ -24,6 +24,7 @@ export class UserService {
       password: 'farida123',
       phone: '010044995999',
     },
+    
   ];
 
   constructor() {}

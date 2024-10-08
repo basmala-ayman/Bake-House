@@ -32,18 +32,8 @@ import { User } from '../../interfaces/user';
 })
 export class LoginComponent implements OnInit {
   users: User[] = [];
-  ngOnInit() {
-    // localStorage.clear();
-    // Access the users array from the service
-    if (localStorage.getItem('allUsers')) {
-      this.users = JSON.parse(localStorage.getItem('allUsers') || '[]');
-      
-    } else {
-      localStorage.setItem('allUsers', JSON.stringify(UserService.getUsers()));
-      this.users = UserService.getUsers();
-    }
-  }
-
+  
+  // نموذج تسجيل الدخول
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -51,11 +41,25 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router) {}
 
+  ngOnInit() {
+    // localStorage.clear();
+    // Access the users array from the service
+    if (localStorage.getItem('allUsers')) {
+      this.users = JSON.parse(localStorage.getItem('allUsers') || '[]');
+    } else {
+      localStorage.setItem('allUsers', JSON.stringify(UserService.getUsers()));
+      this.users = UserService.getUsers();
+    }
+  }
+
   hide = signal(true);
+  
+  // دالة لإظهار/إخفاء كلمة المرور
   clickEvent() {
     this.hide.set(!this.hide());
   }
 
+  // دالة لتسجيل الدخول
   handleLogin(): void {
     const userData = this.loginForm.value;
     let currentUser: User = {
@@ -80,5 +84,10 @@ export class LoginComponent implements OnInit {
         modal.show(); // This will show the modal
       }
     }
+  }
+
+  // دالة للتوجيه إلى صفحة "نسيت كلمة المرور"
+  goToForgetPassword() {
+    this.router.navigate(['/forgetPassword']);
   }
 }
