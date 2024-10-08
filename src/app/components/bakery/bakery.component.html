@@ -1,1 +1,14 @@
-<p>bakery works!</p>
+<div class="container-xl">
+  <h1>Bakery</h1>
+  <div class="content">
+    <div *ngFor="let product of bakeryProducts" class="card item">
+      <img [src]="product.image" class="card-img-top" [alt]="product.name">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <span>{{product.price | currency: 'EGP': 'symbol-narrow'}}</span>
+        <i class="fa-solid fa-cart-plus"></i>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+$dark-color: #543310;
+$alt-dark-color: #74512d;
+$light-color: #f8f4e1;
+$light-background: rgba(248, 244, 225, 0.8);
+$alt-light-color: #af8f6f;
+$section-padding: 90px;
+
+.container-xl {
+  padding: $section-padding 0;
+  h1{
+    text-align: center;
+    color: $dark-color;
+    margin: 0 0 60px;
+    position: relative;
+    &::after{
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 3px;
+      width: 100px;
+      background-color: $dark-color;
+    }
+  }
+  .content {
+    display: grid;
+    // background-color: lightcoral;
+    grid-template-columns: repeat(auto-fill, minmax(266px, 1fr));
+    gap: 30px;
+    .card {
+      border-color: $alt-dark-color;
+      padding-top: 25px;
+    }
+    .item {
+      // background-color: #eee;
+      text-align: center;
+      color: $dark-color;
+      transition: 0.3s ease;
+      img {
+        margin: auto;
+        width: 65% !important;
+        border: none;
+        // background-color: #777;
+        object-fit: contain;
+        transition: transform 0.5s ease;
+        &.card-img-top {
+          border-radius: 0;
+          border: none;
+        }
+        &:hover{
+          transform: scale(1.1);
+        }
+      }
+      h5 {
+        text-align: center;
+        font-size: 16px;
+      }
+      span {
+        display: block;
+        font-weight: 500;
+        font-size: 20px;
+      }
+      i {
+        padding: 13px;
+        margin-top: 25px;
+        border-radius: 50%;
+        font-size: 20px;
+        color: $alt-dark-color;
+        // border: 1px solid $dark-color;
+        box-shadow: $dark-color 0px 0px 8px -2px;
+        // opacity: 0.85;
+        transition: color 0.3s ease;
+        cursor: pointer;
+        &:hover {
+          color: $dark-color;
+          // opacity: 1;
+          // background-color: $light-background;
+        }
+      }
+      // transform: translateY(0);
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: $dark-color 0px 2px 8px -5px, $alt-light-color 0px 4px 5px 0px,
+          #896c50 0px 1px 10px 0px;
+      }
+    }
+  }
+}

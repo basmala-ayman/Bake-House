@@ -53,13 +53,11 @@ export class LoginComponent implements OnInit {
   }
 
   hide = signal(true);
-  
   // دالة لإظهار/إخفاء كلمة المرور
   clickEvent() {
     this.hide.set(!this.hide());
   }
 
-  // دالة لتسجيل الدخول
   handleLogin(): void {
     const userData = this.loginForm.value;
     let currentUser: User = {
@@ -86,7 +84,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // دالة للتوجيه إلى صفحة "نسيت كلمة المرور"
   goToForgetPassword() {
     this.router.navigate(['/forgetPassword']);
   }

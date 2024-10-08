@@ -84,26 +84,6 @@ body {
 }
 
 
-// .main-btn {
-//   cursor: pointer;
-//   color: $light-color !important;
-//   background-color: $dark-color !important;
-//   padding: 6px 16px;
-//   transition: background-color $main-transition;
-//   border-radius: 5px;
-//   opacity: 0.95;
-
-//   &:hover {
-//     opacity: 1;
-//   }
-
-//   &:disabled {
-//     opacity: 0.8;
-//     color: $light-color !important;
-//     cursor: not-allowed;
-//   }
-// }
-
 html,
 body {
   height: 100%;
@@ -115,4 +95,8 @@ body {
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: transparent !important;
+}
+
+.container-xl{
+  max-width: 1180px !important;
 }
