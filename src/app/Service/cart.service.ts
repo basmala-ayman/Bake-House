@@ -23,9 +23,14 @@ export class CartService {
     const existingProduct = currentCart.find((item) => item.id === product.id);
 
     if (existingProduct) {
-      existingProduct.quantity =
-        (existingProduct.quantity ?? 0) + (product.quantity ?? 0);
+      existingProduct.quantity = (existingProduct.quantity ?? 0) + 1;
+      existingProduct.amount--;
+      // console.log(existingProduct);
+      // console.log(product);
     } else {
+      // increase quantity of its product
+      product.quantity = (product.quantity ?? 0) + 1;
+      product.amount--;
       currentCart.push(product);
     }
 
@@ -37,48 +42,24 @@ export class CartService {
     // this.updateTotalQuantity();
   }
 
-  // Method to calculate and update total quantity
-  // private updateTotalQuantity() {
-  //   const total = this.cartItems.value.reduce(
-  //     (sum, product) => sum + (product.quantity ?? 0),
-  //     0
-  //   );
-  //   CartService.totalQuantity.next(total); // Update the totalQuantity subject
-  // }
+  removeOne(product: Product) {
+    const currentCart = this.cartItems.value;
+    const existingProduct = currentCart.find((item) => item.id === product.id);
 
-  // Expose the total quantity as an observable
-  // static getTotalQuantity() {
-  //   return CartService.totalQuantity.asObservable(); // Other components can subscribe to this
-  // }
+    if (existingProduct) {
+      existingProduct.amount++;
+      existingProduct.quantity = (existingProduct.quantity ?? 0) - 1;
+    }
 
-  // Add product to the cart
-  // addToCart(product: Product) {
-  //   const currentCart = this.cartItems.value;
-  //   currentCart.push(product);
-  //   this.cartItems.next(currentCart); // Notify subscribers
+    // Update cart items and localStorage
+    this.cartItems.next(currentCart);
+    localStorage.setItem('cart', JSON.stringify(currentCart));
+  }
 
-  //   // Save the updated cart to localStorage
-  //   localStorage.setItem('cart', JSON.stringify(currentCart));
-  // }
-
-  // Get cart items
-  
   getCartItems(): Product[] {
     return this.cartItems.value;
   }
 
-  // getTotalQuantity(): void {
-  //   const currentCart = this.cartItems.value; // Get the current cart items
-  //   // Sum up the total quantity of all products in the cart
-  //   this.totalQuantity = currentCart.reduce((total, product) => {
-  //     // Make sure to handle the case where product.quantity might be undefined
-  //     return total + (product.quantity ?? 0);
-  //   }, 0);
-  //   // return totalQuantity;
-  // }
-
-  // Clear the cart
-  
   clearCart() {
     this.cartItems.next([]);
     localStorage.removeItem('cart');

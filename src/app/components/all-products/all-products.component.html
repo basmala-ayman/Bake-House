@@ -22,28 +22,18 @@
             <span>{{product.price | currency: 'EGP': 'symbol-narrow'}}</span>
             }
           </span>
-          <div class="addBtns">
-            <!-- Add to Cart Button -->
-            <button class="btn" (click)="selectProduct(product)">Add to Cart</button>
-            <!-- Modal/Quantity Input (shown when a product is selected) -->
-            <div class="addInput" *ngIf="selectedProduct === product">
-              <input [disabled]="product.amount == 0" type="number" [(ngModel)]="quantity" min="1"
-                [max]="product.amount" />
-              <button
-                [disabled]="product.amount == 0"
-                [ngStyle]="{ 'cursor': product.amount == 0 ? 'not-allowed' : 'pointer' }"
-                (click)="addToCart(product, quantity)">Add</button>
-            </div>
-          </div>
-
-
-          <!-- <i class="fa-solid fa-cart-plus cart-icon" (click)="addToCart(produc)"></i> -->
-          <!-- <button class="btn" *ngIf="added" (click)="added=false">Add to Cart</button> -->
-          <!-- <div *ngIf="!added" class="d-flex">
-            <input type="number" value="1" min="1" class="form-control" [(ngModel)]="amount">
-            <button class="btn" (click)="addToCart(product,amount)">Add</button>
-          </div> -->
+            
+            <button class="btn" [disabled]="product.amount == 0" (click)="addOne(product)">Add to
+              Cart</button>
         </div>
     </div>
   </div>
 </div>
+
+<!-- <div class="edit">
+  <button [disabled]="product.quantity == 0" class="btn" (click)="removeOne(product)"><i
+      class="fa-solid fa-minus"></i></button>
+  <span>{{(product.quantity??0)}}</span>
+  <button [disabled]="product.amount == 0" class="btn" (click)="addOne(product)"><i
+      class="fa-solid fa-plus"></i></button>
+</div> -->

@@ -14,7 +14,11 @@
           <del>{{calcTotalPerItem((item.quantity??0),item.price) | currency: 'EGP': 'symbol-narrow'}}</del>
         </p>
         }
-        <p><strong>Quantity: </strong>{{(item.quantity??0)}}</p>
+        <div class="edit">
+          <button [disabled]="item.quantity==0" class="btn" (click)="removeOne(item)" ><i class="fa-solid fa-minus"></i></button>
+          <span>{{(item.quantity??0)}}</span>
+          <button [disabled]="item.amount==0" class="btn" (click)="addOne(item)"><i class="fa-solid fa-plus"></i></button>
+        </div>
       </div>
     </div>
   </div>

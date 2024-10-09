@@ -14,8 +14,8 @@ $section-padding: 90px;
 
 // $alt-dark-color: #74512D;
 // $light-color: #f0f3f2;
-$shadow: $dark-color 0px 2px 8px -5px,
-        $alt-light-color 0px 4px 5px 0px, #896c50 0px 1px 10px 0px;
+$shadow: $dark-color 0px 2px 8px -5px, $alt-light-color 0px 4px 5px 0px,
+  #896c50 0px 1px 10px 0px;
 $font-family: "Encode Sans Expanded", sans-serif;
 $rating-color: #6c4e31;
 $main-transition: 0.8s;
@@ -119,26 +119,26 @@ input {
 }
 
 h1 {
-    text-align: center;
-    color: $dark-color;
-    margin: 0 0 50px !important;
-    position: relative;
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 3px;
-      width: 100px;
-      background-color: $dark-color;
-    }
+  text-align: center;
+  color: $dark-color;
+  margin: 0 0 50px !important;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    width: 100px;
+    background-color: $dark-color;
   }
+}
 // product, bakery, cake, chocolate, offers style
 .container-xl.product-section {
   padding-top: $section-padding;
   padding-bottom: $section-padding;
-  
+
   .content {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(266px, 1fr));
@@ -162,7 +162,6 @@ h1 {
         &.card-img-top {
           border-radius: 0;
           border: none;
-          // border-bottom: 1px solid $alt-dark-color;
         }
         &:hover {
           transform: scale(1.1);
@@ -199,63 +198,44 @@ h1 {
         font-weight: 500;
         font-size: 20px;
       }
-      div.addBtns {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
+      button {
         margin-top: 30px;
-        & > button:first-child {
-          // padding: 6px 10px;
-          font-size: 18px;
-          color: $alt-dark-color;
-          box-shadow: $dark-color 0px 0px 8px -2px;
-          transition: 0.3s ease;
-          &:hover {
-            // color: $dark-color;
-            // transform: translateY(-5px);
-            background-color: $alt-dark-color;
-            color: $light-color;
-          }
-        }
-        div.addInput {
-          // margin: auto;
-          // width: fit-content;
-          display: flex;
-          // gap: 10px;
-          // justify-content: center;
-          align-items: center;
-          border-radius: 6px;
-          border: 1px solid $dark-color;
-          // box-shadow: $dark-color 0px 0px 8px -2px;
-          input {
-            border: none;
-            color: $dark-color;
-            padding-left: 5px;
-            border-top-left-radius: 4px;
-            border-bottom-left-radius: 4px;
-            &:focus {
-              outline: none;
-            }
-          }
-          button {
-            border: none;
-            background-color: $alt-dark-color;
-            padding: 8px 10px;
-            color: $light-color;
-            transition: 0.3s ease;
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
 
-            &:hover {
-              background-color: $dark-color;
-            }
-          }
+        font-size: 18px;
+        color: $alt-dark-color;
+        box-shadow: $dark-color 0px 0px 8px -2px;
+        transition: 0.3s ease;
+        &:hover {
+          // color: $dark-color;
+          // transform: translateY(-5px);
+          background-color: $alt-dark-color;
+          color: $light-color;
         }
       }
       &:hover {
         transform: translateY(-10px);
         box-shadow: $shadow;
       }
+    }
+  }
+}
+
+// Add Buttons
+div.edit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: $dark-color 0px 0px 8px -2px;
+  width: fit-content;
+  border-radius: 6px;
+  font-size: 20px;
+  button {
+    color: $dark-color;
+    transition: 0.3s ease;
+
+    &:hover {
+      color: $light-color;
+      background-color: $alt-dark-color;
     }
   }
 }

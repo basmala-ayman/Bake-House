@@ -16,7 +16,6 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    // Subscribe to cart changes
     this.cartService.currentCart.subscribe((items: Product[]) => {
       this.cartItems = items;
     });
@@ -26,8 +25,16 @@ export class CartComponent implements OnInit {
     return price - price * (discount / 100);
   }
 
-  calcTotalPerItem(quantity: number, price: number): number{
+  calcTotalPerItem(quantity: number, price: number): number {
     return price * quantity;
+  }
+
+  removeOne(product: Product): void{
+    this.cartService.removeOne(product);
+  }
+
+  addOne(product: Product): void{
+    this.cartService.addToCart(product); 
   }
 
   clearCart() {
