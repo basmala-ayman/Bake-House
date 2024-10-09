@@ -1,0 +1,22 @@
+<div class="container-xl cart-section">
+  <h1>Your Cart</h1>
+  <div class="cart">
+    <div *ngFor="let item of cartItems" class="item">
+      <img [src]="item.image" [alt]="item.name">
+      <div class="info">
+        <h3>{{item.name}}</h3>
+        <p><strong>Price per item: </strong>{{item.price}}</p>
+        @if(item.discount>0){
+        <p><strong>Price per item after discount: </strong>{{calcDiscount(item.price,item.discount)}}</p>
+        <p><strong>Total Price: </strong>
+          {{calcTotalPerItem((item.quantity??0),calcDiscount(item.price,item.discount)) | currency: 'EGP':
+          'symbol-narrow'}}
+          <del>{{calcTotalPerItem((item.quantity??0),item.price) | currency: 'EGP': 'symbol-narrow'}}</del>
+        </p>
+        }
+        <p><strong>Quantity: </strong>{{(item.quantity??0)}}</p>
+      </div>
+    </div>
+  </div>
+  <button class='btn' (click)="clearCart()">Clear Cart</button>
+</div>

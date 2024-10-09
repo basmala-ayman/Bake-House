@@ -1,1 +1,49 @@
-<p>all-products works!</p>
+<div class="container-xl product-section">
+  <h1>All Products</h1>
+  <div class="content">
+    <div *ngFor="let product of allProducts" class="card item">
+      <img [src]="product.image" class="card-img-top" [alt]="product.name">
+      @if( product.amount == 0) {
+      <span class="warning-label bg-danger">
+        Out of Stock
+      </span>
+      } @else if( product.amount <= 10 && product.amount> 0) {
+        <span class="warning-label bg-warning">
+          Low in Stock
+        </span>
+        }
+        <div class="card-body">
+          <h3 class="card-title">{{product.name}}</h3>
+          <span>
+            @if(product.discount > 0){
+            {{calcDiscount(product.price,product.discount) | currency: 'EGP': 'symbol-narrow'}}
+            <del> {{product.price | currency: 'EGP': 'symbol-narrow'}}</del>
+            } @else {
+            <span>{{product.price | currency: 'EGP': 'symbol-narrow'}}</span>
+            }
+          </span>
+          <div class="addBtns">
+            <!-- Add to Cart Button -->
+            <button class="btn" (click)="selectProduct(product)">Add to Cart</button>
+            <!-- Modal/Quantity Input (shown when a product is selected) -->
+            <div class="addInput" *ngIf="selectedProduct === product">
+              <input [disabled]="product.amount == 0" type="number" [(ngModel)]="quantity" min="1"
+                [max]="product.amount" />
+              <button
+                [disabled]="product.amount == 0"
+                [ngStyle]="{ 'cursor': product.amount == 0 ? 'not-allowed' : 'pointer' }"
+                (click)="addToCart(product, quantity)">Add</button>
+            </div>
+          </div>
+
+
+          <!-- <i class="fa-solid fa-cart-plus cart-icon" (click)="addToCart(produc)"></i> -->
+          <!-- <button class="btn" *ngIf="added" (click)="added=false">Add to Cart</button> -->
+          <!-- <div *ngIf="!added" class="d-flex">
+            <input type="number" value="1" min="1" class="form-control" [(ngModel)]="amount">
+            <button class="btn" (click)="addToCart(product,amount)">Add</button>
+          </div> -->
+        </div>
+    </div>
+  </div>
+</div>

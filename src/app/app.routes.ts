@@ -14,6 +14,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { CakeComponent } from './components/cake/cake.component';
+import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
   {
@@ -32,13 +33,14 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, title: 'Home' },
-      { path: 'allProduct', component: AllProductsComponent, title: 'AllProduct' },
-      { path: 'cake', component: CakeComponent, title: 'Cake' },
+      { path: 'allProduct', component: AllProductsComponent, title: 'All Products' },
+      { path: 'cake', component: CakeComponent, title: 'Cakes' },
       { path: 'bakery', component: BakeryComponent, title: 'Bakery' },
-      { path: 'chocolate', component: ChocolateComponent, title: 'Chocolate' },
+      { path: 'chocolate', component: ChocolateComponent, title: 'Chocolates' },
       { path: 'offers', component: OffersComponent, title: 'Offers' },
       { path: 'about', component: AboutComponent, title: 'About' },
-      { path: 'contact', component: ContactComponent, title: 'Contact' },
+      { path: 'contact', component: ContactComponent, title: 'Contact Us' },
+      { path: 'cart', component: CartComponent, title: 'Cart' },
      
     ],
   },

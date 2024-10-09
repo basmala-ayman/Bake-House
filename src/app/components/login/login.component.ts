@@ -32,15 +32,14 @@ import { User } from '../../interfaces/user';
 })
 export class LoginComponent implements OnInit {
   users: User[] = [];
-  
   // نموذج تسجيل الدخول
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
-
+  
   constructor(private router: Router) {}
-
+  
   ngOnInit() {
     // localStorage.clear();
     // Access the users array from the service

@@ -30,16 +30,20 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="offers" routerLinkActive="active">Offers</a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" routerLink="about" routerLinkActive="active">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="contact" routerLinkActive="active">Contact</a>
+          <a class="nav-link" routerLink="contact" routerLinkActive="active">Contact Us</a>
         </li>
       </ul>
       <div class="btns">
-        <span class="name me-2">Hello, {{firstName[0]}}</span>
+        <a class="name">Hello, {{firstName[0]}}</a>
+        <a routerLink="cart" routerLinkActive="active">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>{{getTotal()}}</span>
+        </a>
         <a class="btn" role="button" (click)="signOut()">Sign Out</a>
       </div>
     </div>

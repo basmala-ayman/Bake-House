@@ -1,21 +1,25 @@
-<div class="container-xl">
-  <h1>Bakery</h1>
+<div class="container-xl product-section">
+  <h1>Offers</h1>
   <div class="content">
     <div *ngFor="let product of offerProducts" class="card item">
       <img [src]="product.image" class="card-img-top" [alt]="product.name">
-      @if( product.amount <= 10 && product.amount> 0) {
-        <span class="warning-label">
+      @if( product.amount == 0) {
+      <span class="warning-label bg-danger">
+        Out of Stock
+      </span>
+      }@else if( product.amount <= 10 && product.amount> 0) {
+        <span class="warning-label bg-warning">
           Low in Stock
         </span>
         }
-      <div class="card-body">
-        <h5 class="card-title">{{product.name}}</h5>
-        <span>
-          {{calcDiscount(product.price,product.discount) | currency: 'EGP': 'symbol-narrow'}}
-          <del> {{product.price | currency: 'EGP': 'symbol-narrow'}}</del>
-        </span>
-        <i class="fa-solid fa-cart-plus"></i>
-      </div>
+        <div class="card-body">
+          <h3 class="card-title">{{product.name}}</h3>
+          <span>
+            {{calcDiscount(product.price,product.discount) | currency: 'EGP': 'symbol-narrow'}}
+            <del> {{product.price | currency: 'EGP': 'symbol-narrow'}}</del>
+          </span>
+          <i class="fa-solid fa-cart-plus cart-icon"></i>
+        </div>
     </div>
   </div>
 </div>

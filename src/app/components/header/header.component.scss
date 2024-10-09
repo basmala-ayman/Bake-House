@@ -43,11 +43,38 @@ $alt-light-color: #af8f6f;
     }
   }
   div.btns {
-    span.name {
-      text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    a:not(:last-child) {
       color: $dark-color;
-      font-weight: 500;
-      cursor: pointer;
+      &.name {
+        text-decoration: none;
+        font-weight: 500;
+      }
+      &:nth-child(2) {
+        position: relative;
+        font-size: 22px;
+        transition: font-size 0.2s ease;
+        &:hover {
+          font-size: 24px;
+        }
+        span {
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          font-size: 12px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          line-height: 20px;
+          text-align: center;
+          background-color: $light-color;
+          color: $dark-color;
+          border: 1px solid $dark-color;
+          font-weight: 500;
+        }
+      }
     }
   }
 }
@@ -57,8 +84,9 @@ $alt-light-color: #af8f6f;
     .dropdown-menu {
       position: absolute;
       margin: auto;
+      background-color: $light-color !important;
     }
-    .dropdown-menu[data-bs-popper]{
+    .dropdown-menu[data-bs-popper] {
       top: 100%;
       left: 50%;
       transform: translateX(-50%);
@@ -69,15 +97,9 @@ $alt-light-color: #af8f6f;
     }
   }
   .btns {
-    a,
-    span.name {
+    flex-direction: column;
+    a:last-child{
       width: 100%;
-      display: block;
-      text-align: center;
-      margin: 0;
-      &:last-child {
-        margin-top: 10px !important;
-      }
     }
   }
 }

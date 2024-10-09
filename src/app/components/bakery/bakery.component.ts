@@ -17,4 +17,7 @@ export class BakeryComponent implements OnInit {
       (p) => p.category === 'bakery'
     );
   }
+  calcDiscount(price: number, discount: number): number {
+    return price - price * (discount / 100);
+  }
 }
