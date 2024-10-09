@@ -16,6 +16,18 @@ export class AllProductsComponent implements OnInit {
   allProducts: Product[] = [];
   ngOnInit() {
     this.allProducts = ProductService.getProducts();
+    if (localStorage.getItem('cart')) {
+      let currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+      this.allProducts.forEach((myItem, index) => {
+        let matchingItem = currentCart.find(
+          (item: Product) => item.id === myItem.id
+        );
+        if (matchingItem) {
+          this.allProducts[index] = matchingItem;
+        }
+      });
+    }
   }
 
   calcDiscount(price: number, discount: number): number {
