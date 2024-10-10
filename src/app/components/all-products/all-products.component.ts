@@ -10,19 +10,18 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './all-products.component.html',
-  styleUrl: './all-products.component.scss',
+  styleUrls: ['./all-products.component.scss'], 
 })
 export class AllProductsComponent implements OnInit {
   allProducts: Product[] = [];
+
   ngOnInit() {
     this.allProducts = ProductService.getProducts();
     if (localStorage.getItem('cart')) {
-      let currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
 
       this.allProducts.forEach((myItem, index) => {
-        let matchingItem = currentCart.find(
-          (item: Product) => item.id === myItem.id
-        );
+        const matchingItem = currentCart.find((item: Product) => item.id === myItem.id);
         if (matchingItem) {
           this.allProducts[index] = matchingItem;
         }

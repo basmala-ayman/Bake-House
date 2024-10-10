@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss',
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
   cartItems: Product[] = [];
@@ -29,15 +29,23 @@ export class CartComponent implements OnInit {
     return price * quantity;
   }
 
-  removeOne(product: Product): void{
+  removeOne(product: Product): void {
     this.cartService.removeOne(product);
   }
 
-  addOne(product: Product): void{
-    this.cartService.addToCart(product); 
+  addOne(product: Product): void {
+    this.cartService.addToCart(product);
   }
 
   clearCart() {
     this.cartService.clearCart();
   }
-}
+
+  getTotalPrice(): number {
+    let total = 0;
+    for (const item of this.cartItems) {
+      total += this.calcTotalPerItem(item.quantity ?? 0, item.discount > 0 ? this.calcDiscount(item.price, item.discount) : item.price);
+    }
+    return total;
+  }
+} 

@@ -4,23 +4,26 @@
     <div *ngFor="let item of cartItems" class="item">
       <img [src]="item.image" [alt]="item.name">
       <div class="info">
-        <h3>{{item.name}}</h3>
-        <p><strong>Price per item: </strong>{{item.price}}</p>
-        @if(item.discount>0){
-        <p><strong>Price per item after discount: </strong>{{calcDiscount(item.price,item.discount)}}</p>
-        <p><strong>Total Price: </strong>
-          {{calcTotalPerItem((item.quantity??0),calcDiscount(item.price,item.discount)) | currency: 'EGP':
-          'symbol-narrow'}}
-          <del>{{calcTotalPerItem((item.quantity??0),item.price) | currency: 'EGP': 'symbol-narrow'}}</del>
-        </p>
-        }
+        <h3>{{ item.name }}</h3>
+        <p><strong>Price per item: </strong>{{ item.price | currency: 'EGP': 'symbol-narrow' }}</p>
+        <ng-container *ngIf="item.discount > 0; else noDiscount">
+          <p><strong>Price per item after discount: </strong>{{ calcDiscount(item.price, item.discount) | currency: 'EGP': 'symbol-narrow' }}</p>
+          <p><strong>Total Price: </strong>
+            {{ calcTotalPerItem((item.quantity ?? 0), calcDiscount(item.price, item.discount)) | currency: 'EGP': 'symbol-narrow' }}
+            <del>{{ calcTotalPerItem((item.quantity ?? 0), item.price) | currency: 'EGP': 'symbol-narrow' }}</del>
+          </p>
+        </ng-container>
+        <ng-template #noDiscount>
+          <p><strong>Total Price: </strong>{{ calcTotalPerItem((item.quantity ?? 0), item.price) | currency: 'EGP': 'symbol-narrow' }}</p>
+        </ng-template>
         <div class="edit">
-          <button [disabled]="item.quantity==0" class="btn" (click)="removeOne(item)" ><i class="fa-solid fa-minus"></i></button>
-          <span>{{(item.quantity??0)}}</span>
-          <button [disabled]="item.amount==0" class="btn" (click)="addOne(item)"><i class="fa-solid fa-plus"></i></button>
+          <button [disabled]="item.quantity === 0" class="btn" (click)="removeOne(item)"><i class="fa-solid fa-minus"></i></button>
+          <span>{{ (item.quantity ?? 0) }}</span>
+          <button [disabled]="item.amount === 0" class="btn" (click)="addOne(item)"><i class="fa-solid fa-plus"></i></button>
         </div>
       </div>
     </div>
   </div>
-  <button class='btn' (click)="clearCart()">Clear Cart</button>
+  <p><strong>Total Amount: </strong>{{ getTotalPrice() | currency: 'EGP': 'symbol-narrow' }}</p>
+  <button class="btn" (click)="clearCart()">Clear Cart</button>
 </div>

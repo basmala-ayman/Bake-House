@@ -44,6 +44,12 @@ export const routes: Routes = [
      
     ],
   },
+
+  { 
+    path: '**', 
+    loadComponent: () => import('./components/notfound/notfound.component').then(m => m.NotfoundComponent), 
+    title: 'Not Found' 
+  }
 ];
 
 @NgModule({
