@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Product } from '../interfaces/product';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+
   static products: Product[] = [
     {
       name: 'Halawa Croissant',
@@ -316,6 +318,6 @@ export class ProductService {
   constructor() {}
 
   static getProducts(): Product[] {
-    return this.products;
+  return this.products;
   }
 }

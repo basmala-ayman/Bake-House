@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './all-products.component.html',
-  styleUrls: ['./all-products.component.scss'], 
+  styleUrls: ['./all-products.component.scss'],
 })
 export class AllProductsComponent implements OnInit {
   allProducts: Product[] = [];
@@ -20,11 +20,13 @@ export class AllProductsComponent implements OnInit {
     if (localStorage.getItem('cart')) {
       const currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
 
-      this.allProducts.forEach((myItem, index) => {
-        const matchingItem = currentCart.find((item: Product) => item.id === myItem.id);
-        if (matchingItem) {
-          this.allProducts[index] = matchingItem;
-        }
+      this.allProducts.forEach((myItem) => {
+        currentCart.find((item: Product) => {
+          if (item.id === myItem.id) {
+            myItem.amount = item.amount;
+            myItem.quantity = item.quantity;
+          }
+        });
       });
     }
   }

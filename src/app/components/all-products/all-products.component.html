@@ -3,7 +3,7 @@
   <div class="content">
     <div *ngFor="let product of allProducts" class="card item">
       <img [src]="product.image" class="card-img-top" [alt]="product.name">
-      <span *ngIf="product.amount === 0" class="warning-label bg-danger">
+      <span *ngIf="product.amount <= 0" class="warning-label bg-danger">
         Out of Stock
       </span>
       <span *ngIf="product.amount > 0 && product.amount <= 10" class="warning-label bg-warning">
