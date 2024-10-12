@@ -1,1 +1,9 @@
-<p>products-details works!</p>
+<div *ngIf="product">
+    <h1>{{ product.name }}</h1>
+    <img [src]="product.image" alt="{{ product.name }}" class="product-img">
+    <p>{{ product.description }}</p>
+    <p><strong>Price:</strong> {{ product.price }} USD</p>
+    <p><strong>Category:</strong> {{ product.category }}</p>
+    <p><strong>Stock:</strong> {{ product.stock }} items</p>
+  </div>
+  
