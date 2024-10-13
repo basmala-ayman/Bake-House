@@ -11,9 +11,6 @@ $error-color: #dc3545;
 $light-background: rgba(248, 244, 225, 0.8);
 $alt-light-color: #af8f6f;
 $section-padding: 90px;
-
-// $alt-dark-color: #74512D;
-// $light-color: #f0f3f2;
 $shadow: $dark-color 0px 2px 8px -5px, $alt-light-color 0px 4px 5px 0px,
   #896c50 0px 1px 10px 0px;
 $font-family: "Encode Sans Expanded", sans-serif;
@@ -198,17 +195,28 @@ h1 {
         font-weight: 500;
         font-size: 20px;
       }
-      button {
-        margin-top: 30px;
-
-        font-size: 18px;
-        color: $alt-dark-color;
+      a.btn{
+        display: block;
+        width: fit-content;
+        font-size: 14px !important;
+        margin: 30px auto 10px;
+        padding: 4px 10px ;
         box-shadow: $dark-color 0px 0px 8px -2px;
         transition: 0.3s ease;
+
         &:hover {
-          // color: $dark-color;
-          // transform: translateY(-5px);
           background-color: $alt-dark-color;
+          color: $light-color;
+        }
+      }
+      button {
+        font-size: 18px;
+        box-shadow: $dark-color 0px 0px 8px -2px;
+        transition: 0.3s ease;
+        color: $light-color;
+        background-color: $alt-dark-color;
+        &:hover {
+          background-color: $dark-color;
           color: $light-color;
         }
       }

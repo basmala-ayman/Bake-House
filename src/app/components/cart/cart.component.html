@@ -27,6 +27,7 @@
             <button [disabled]="item.amount === 0" class="btn" (click)="addOne(item)"><i
                 class="fa-solid fa-plus"></i></button>
           </div>
+          <!-- <a [routerLink]="['../product', product.id]" class="btn">Show Details</a> -->
           <button class="btn" (click)="removeProduct(item)">Remove Product</button>
         </div>
       </div>

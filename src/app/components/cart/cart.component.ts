@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../Service/cart.service';
 import { Product } from '../../interfaces/product';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
@@ -33,7 +34,7 @@ export class CartComponent implements OnInit {
     this.cartService.removeOne(product);
   }
 
-  removeProduct(product: Product): void{
+  removeProduct(product: Product): void {
     this.cartService.removeProduct(product);
   }
 
@@ -48,8 +49,13 @@ export class CartComponent implements OnInit {
   getTotalPrice(): number {
     let total = 0;
     for (const item of this.cartItems) {
-      total += this.calcTotalPerItem(item.quantity ?? 0, item.discount > 0 ? this.calcDiscount(item.price, item.discount) : item.price);
+      total += this.calcTotalPerItem(
+        item.quantity ?? 0,
+        item.discount > 0
+          ? this.calcDiscount(item.price, item.discount)
+          : item.price
+      );
     }
     return total;
   }
-} 
+}

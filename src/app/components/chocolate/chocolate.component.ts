@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../Service/product.service';
 import { Product } from '../../interfaces/product';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../../Service/cart.service'; 
+import { CartService } from '../../Service/cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-chocolate',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './chocolate.component.html',
-  styleUrls: ['./chocolate.component.scss'], 
+  styleUrls: ['./chocolate.component.scss'],
 })
 export class ChocolateComponent implements OnInit {
   chocolateProducts: Product[] = [];
 
-  constructor(private cartService: CartService) {} 
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.chocolateProducts = ProductService.getProducts().filter(
@@ -27,6 +28,6 @@ export class ChocolateComponent implements OnInit {
   }
 
   addOne(product: Product): void {
-    this.cartService.addToCart(product); 
+    this.cartService.addToCart(product);
   }
 }

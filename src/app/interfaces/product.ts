@@ -7,5 +7,4 @@ export interface Product {
   category: string;
   id: string;
   quantity?: number;
-  hidden?: boolean;
 }

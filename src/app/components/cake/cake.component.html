@@ -25,8 +25,9 @@
             <span>{{ product.price | currency: 'EGP': 'symbol-narrow' }}</span>
           </ng-template>
         </span>
-        
+
         <!-- Add to Cart button -->
+        <a [routerLink]="['../product', product.id]" class="btn">Show Details</a>
         <button class="btn" [disabled]="product.amount === 0" (click)="addOne(product)">Add to Cart</button>
       </div>
     </div>

@@ -15,6 +15,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { CakeComponent } from './components/cake/cake.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ProductDetailComponent } from './components/product-details/product-details.component';
 
 export const routes: Routes = [
   {
@@ -24,7 +25,11 @@ export const routes: Routes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent, title: 'Login' },
       { path: 'register', component: RegisterComponent, title: 'Register' },
-      { path: 'forgetPassword', component: ForgetPasswordComponent ,title: 'ForgetPassword'},
+      {
+        path: 'forgetPassword',
+        component: ForgetPasswordComponent,
+        title: 'Forget Password',
+      },
     ],
   },
   {
@@ -33,7 +38,11 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, title: 'Home' },
-      { path: 'allProduct', component: AllProductsComponent, title: 'All Products' },
+      {
+        path: 'allProduct',
+        component: AllProductsComponent,
+        title: 'All Products',
+      },
       { path: 'cake', component: CakeComponent, title: 'Cakes' },
       { path: 'bakery', component: BakeryComponent, title: 'Bakery' },
       { path: 'chocolate', component: ChocolateComponent, title: 'Chocolates' },
@@ -41,15 +50,18 @@ export const routes: Routes = [
       { path: 'about', component: AboutComponent, title: 'About' },
       { path: 'contact', component: ContactComponent, title: 'Contact Us' },
       { path: 'cart', component: CartComponent, title: 'Cart' },
-     
+      { path: 'product/:id', component: ProductDetailComponent, title: 'Product Details' },
     ],
   },
 
-  { 
-    path: '**', 
-    loadComponent: () => import('./components/notfound/notfound.component').then(m => m.NotfoundComponent), 
-    title: 'Not Found' 
-  }
+  // {
+  //   path: '**',
+  //   loadComponent: () =>
+  //     import('./components/notfound/notfound.component').then(
+  //       (m) => m.NotfoundComponent
+  //     ),
+  //   title: 'Not Found',
+  // },
 ];
 
 @NgModule({

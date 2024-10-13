@@ -4,11 +4,12 @@ import { Product } from '../../interfaces/product';
 import { CartService } from '../../Service/cart.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-products',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './all-products.component.html',
   styleUrls: ['./all-products.component.scss'],
 })

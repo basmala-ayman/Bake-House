@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../../Service/cart.service';
+import { JsonPipe } from '@angular/common';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-header',
@@ -15,8 +17,6 @@ export class HeaderComponent {
   firstName = this.currentUser.name
     ? this.currentUser.name.split(' ')
     : ['User'];
-
-  // totalQuantity: number = 0;
 
   ngOnInit() {
     // Subscribe to the totalQuantity observable to get the latest quantity
@@ -39,6 +39,16 @@ export class HeaderComponent {
   constructor(private router: Router) {}
 
   signOut() {
+    // let currentCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    // let allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+    // let currentUser = JSON.parse(localStorage.getItem('currentUser') || '[]');
+    // allUsers.forEach((user:User) => {
+    //   if (user.email === currentUser.email) {
+    //     user.order = currentCart;
+    //   }
+    // });
+    // localStorage.setItem('allUsers', JSON.stringify(allUsers));
+    // localStorage.removeItem('cart');
     localStorage.removeItem('currentUser');
     this.router.navigate(['login']); // Change 'login' to your login route
   }

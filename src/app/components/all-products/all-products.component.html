@@ -20,16 +20,9 @@
             <span>{{ product.price | currency: 'EGP': 'symbol-narrow' }}</span>
           </ng-template>
         </span>
-        <button class="btn" [disabled]="product.amount === 0" (click)="addOne(product)">Add to Cart</button>
+          <a [routerLink]="['../product', product.id]" class="btn">Show Details</a>
+          <button class="btn" [disabled]="product.amount === 0" (click)="addOne(product)">Add to Cart</button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="edit">
-  <button [disabled]="product.quantity == 0" class="btn" (click)="removeOne(product)"><i
-      class="fa-solid fa-minus"></i></button>
-  <span>{{(product.quantity??0)}}</span>
-  <button [disabled]="product.amount == 0" class="btn" (click)="addOne(product)"><i
-      class="fa-solid fa-plus"></i></button>
-</div> -->
