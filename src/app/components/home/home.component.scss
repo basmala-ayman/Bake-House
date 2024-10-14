@@ -38,8 +38,21 @@ div.carousel{
             font-weight: bold;
             transition: background-color 0.3s ease; 
         }
+        
         .shop-now-btn:hover {
             background-color: rgb(175, 143, 111); 
         }
 
         
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgb(84, 51, 16);
+  border-radius: 50%;
+}
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  padding: 10px;
+}
+

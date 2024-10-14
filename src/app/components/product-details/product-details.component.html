@@ -3,6 +3,7 @@
     <img [src]="product.image" [alt]="product.name">
     <div class="info">
       <h3>{{product.name}}</h3>
+      <p>Bake House {{product.name}} is made from the top ingredients to satisfy you and surely make your day.</p>
       @if(product.amount===0){
       <p><strong>Availability: </strong><span class="text-white bg-danger">Out Of Stock</span></p>
       }@else if(product.amount<=10){ <p><strong>Availability: </strong><span class="text-white bg-warning">Low In
