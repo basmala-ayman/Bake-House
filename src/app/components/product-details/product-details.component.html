@@ -3,6 +3,7 @@
     <img [src]="product.image" [alt]="product.name">
     <div class="info">
       <h3>{{product.name}}</h3>
+      <p>Our Fresh and Delicious {{product.name}}  from Bake House will make you enjoy every bite and surely will make your day a lot better.  </p>
       @if(product.amount===0){
       <p><strong>Availability: </strong><span class="text-white bg-danger">Out Of Stock</span></p>
       }@else if(product.amount<=10){ <p><strong>Availability: </strong><span class="text-white bg-warning">Low In
