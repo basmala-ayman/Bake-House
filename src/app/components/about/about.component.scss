@@ -27,7 +27,7 @@ $section-padding: 90px;
 @media (max-width: 767px) {
   .slide {
     flex-direction: column;
-    gap: 24px;
+    gap: 24px !important;
     div {
       width: 100% !important;
     }
