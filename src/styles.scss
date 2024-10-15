@@ -84,6 +84,10 @@ body {
   }
 }
 
+.navbar .navbar-toggler:focus {
+  box-shadow: none;
+}
+
 // angular material styles
 html,
 body {
@@ -115,6 +119,7 @@ input {
   color: $light-color;
 }
 
+
 h1 {
   text-align: center;
   color: $dark-color;
@@ -129,6 +134,12 @@ h1 {
     height: 3px;
     width: 100px;
     background-color: $dark-color;
+  }
+}
+
+@media (max-width: 767px) {
+  h1{
+    font-size: 48px !important;
   }
 }
 // product, bakery, cake, chocolate, offers style
