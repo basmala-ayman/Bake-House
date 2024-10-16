@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { User } from '../interfaces/user'; // Adjust the path if needed
+import { User } from '../interfaces/user'; 
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  static users: User[] = [
+  private users: User[] = [
     {
       name: 'Basmala Ayman',
       email: 'basmala.ayman@gmail.com',
@@ -24,19 +24,36 @@ export class UserService {
       password: 'farida123',
       phone: '010044995999',
     },
-    
   ];
 
-  constructor() {}
+  constructor() {
+    // التأكد من وجود localStorage لتخزين الرسائل
+    if (!localStorage.getItem('messages')) {
+      localStorage.setItem('messages', JSON.stringify([]));
+    }
+
+    // التأكد من وجود localStorage لتخزين المستخدمين
+    if (!localStorage.getItem('allUsers')) {
+      localStorage.setItem('allUsers', JSON.stringify(this.users));
+    }
+  }
 
   // Method to get the list of users
-  static getUsers(): User[] {
-    return this.users;
+  getUsers(): User[] {
+    return JSON.parse(localStorage.getItem('allUsers') || '[]');
   }
 
-  static pushUser(user:User): void{
-    this.users.push(user);
+  // Method to send a message and store it in localStorage
+  sendMessage(name: string, email: string, message: string): void {
+    const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+    messages.push({ name, email, message, timestamp: new Date() });
+    localStorage.setItem('messages', JSON.stringify(messages));
   }
 
-  // Optionally, you can add methods to add, remove, or update users
+  // Method to add a user
+  pushUser(user: User): void {
+    const allUsers = this.getUsers(); // الحصول على المستخدمين من localStorage
+    allUsers.push(user); // إضافة المستخدم الجديد
+    localStorage.setItem('allUsers', JSON.stringify(allUsers)); // تحديث localStorage
+  }
 }

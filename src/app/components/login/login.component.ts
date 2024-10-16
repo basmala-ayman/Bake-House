@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { UserService } from '../../Service/user.service';
+import { UserService } from '../../Service/user.service'; 
 import { User } from '../../interfaces/user';
 
 @Component({
@@ -32,27 +32,26 @@ import { User } from '../../interfaces/user';
 })
 export class LoginComponent implements OnInit {
   users: User[] = [];
-  // نموذج تسجيل الدخول
-  loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-  });
-  
-  constructor(private router: Router) {}
-  
+  loginForm: FormGroup;
+
+  constructor(private userService: UserService, private router: Router) {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
+    });
+  }
+
   ngOnInit() {
-    // localStorage.clear();
     // Access the users array from the service
     if (localStorage.getItem('allUsers')) {
       this.users = JSON.parse(localStorage.getItem('allUsers') || '[]');
     } else {
-      localStorage.setItem('allUsers', JSON.stringify(UserService.getUsers()));
-      this.users = UserService.getUsers();
+      this.users = this.userService.getUsers();
+      localStorage.setItem('allUsers', JSON.stringify(this.users));
     }
   }
 
   hide = signal(true);
-  // دالة لإظهار/إخفاء كلمة المرور
   clickEvent() {
     this.hide.set(!this.hide());
   }
@@ -77,8 +76,8 @@ export class LoginComponent implements OnInit {
     } else {
       const modalElement = document.getElementById('staticBackdrop');
       if (modalElement) {
-        const modal = new (window as any).bootstrap.Modal(modalElement); // Access the modal via window.bootstrap
-        modal.show(); // This will show the modal
+        const modal = new (window as any).bootstrap.Modal(modalElement);
+        modal.show();
       }
     }
   }

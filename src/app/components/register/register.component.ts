@@ -35,6 +35,8 @@ import { User } from '../../interfaces/user';
 export class RegisterComponent implements OnInit {
   users: User[] = [];
 
+  constructor(private userService: UserService, private router: Router) {}
+
   ngOnInit() {
     if (localStorage.getItem('allUsers')) {
       this.users = JSON.parse(localStorage.getItem('allUsers') || '[]');
@@ -49,8 +51,6 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('rePassword')?.updateValueAndValidity();
     });
   }
-
-  constructor(private router: Router) {}
 
   registerForm: FormGroup = new FormGroup(
     {
@@ -72,12 +72,13 @@ export class RegisterComponent implements OnInit {
   confirmPassword(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const rePassword = control.get('rePassword')?.value;
-    
-    // إرجاع خطأ إذا كانت الحقول مختلفة
+
+   
     return password === rePassword ? null : { mismatch: true };
   }
 
   hide = signal(true);
+  
   clickEvent() {
     this.hide.set(!this.hide());
   }
@@ -102,8 +103,9 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    UserService.pushUser(newUser);
-    localStorage.setItem('allUsers', JSON.stringify(UserService.getUsers()));
+   
+    this.userService.pushUser(newUser);
+    localStorage.setItem('allUsers', JSON.stringify(this.userService.getUsers()));
     this.router.navigate(['/login']);
   }
 }

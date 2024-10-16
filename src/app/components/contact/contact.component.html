@@ -1,1 +1,36 @@
-<p>contact works!</p>
+<div class="contact-container">
+    <!-- القسم الجديد للعنوان -->
+    <h2 class="contact-title">Contact Us</h2>
+
+    
+    <div class="contact-content">
+        <div class="contact-form">
+            <form (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Name</mat-label>
+                    <input matInput [(ngModel)]="name" name="name" placeholder="Your Name" required>
+                    <mat-error *ngIf="name == ''">Please enter your name</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput [(ngModel)]="email" name="email" type="email" placeholder="Your Email" required>
+                    <mat-error *ngIf="email == '' || !email.includes('@')">Please enter a valid email</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput [(ngModel)]="message" name="message" placeholder="Your Message" rows="6" required></textarea>
+                    <mat-error *ngIf="message == ''">Please enter your message</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+
+        <!-- القسم الأيمن: الصورة -->
+        <div class="contact-image-container">
+            <img src="images/products/bakery-8.png" alt="Contact Us" class="contact-image" />
+        </div>
+    </div>
+</div>

@@ -8,6 +8,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    HttpClientModule, provideAnimationsAsync() // التأكد من عدم وجود AuthService هنا
+    HttpClientModule, provideAnimationsAsync(), provideAnimationsAsync() // التأكد من عدم وجود AuthService هنا
   ]
 };
