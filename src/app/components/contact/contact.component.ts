@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../Service/user.service'; 
+import { UserService } from '../../Service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { User } from '../../interfaces/user'; 
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-contact',
@@ -32,14 +32,13 @@ export class ContactComponent {
 
   onSubmit() {
     const users = this.userService.getUsers();
-    const loggedInUser = users.find((user: User) => user.email === this.email); 
+    const loggedInUser = users.find((user: User) => user.email === this.email);
 
     if (loggedInUser) {
       this.userService.sendMessage(this.name, this.email, this.message);
       this.snackBar.open('Message sent successfully!', 'Close', {
         duration: 3000,
       });
-      
       this.name = '';
       this.email = '';
       this.message = '';
