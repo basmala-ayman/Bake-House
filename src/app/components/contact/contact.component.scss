@@ -13,6 +13,7 @@ $light-background: rgba(248, 244, 225, 0.8);
   min-height: 100vh;
   padding-top: $section-padding;
   padding-bottom: $section-padding;
+
   .content {
     display: flex;
     justify-content: space-between;
@@ -25,8 +26,10 @@ $light-background: rgba(248, 244, 225, 0.8);
     box-shadow: $alt-light-color 0px 2px 12px -4px;
     padding: 60px 30px;
     animation: slideIn 1s ease-in-out, fadeIn 1.5s ease-in-out;
+
     .contact-form {
       flex: 1;
+
       button {
         display: block;
         margin: 0 auto;
@@ -41,20 +44,37 @@ $light-background: rgba(248, 244, 225, 0.8);
         }
       }
     }
+
     .image {
       flex: 1;
+      position: relative; // Add position relative for shadow
+      overflow: hidden; // Prevent overflow for shadow effect
+
       img {
         display: block;
         width: 100%;
         height: auto;
         max-width: 400px;
         margin: auto;
-        animation: rotateOnLoad 2s ease-in-out;
-        transition: 0.8s;
+        animation: rotateOnLoad 2s ease-in-out infinite alternate; // Infinite animation
+        border-radius: 10px; // Optional: rounded corners
         &:hover {
-          transform: scale(1.05) rotate(20deg);
-          opacity: 0.9;
+          opacity: 0.9; // Optional: slightly reduce opacity on hover
         }
+      }
+
+      // Shadow effect to give depth
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        border-radius: 10px; // Match border radius of image
+        opacity: 0; // Initially hidden
+        transition: opacity 0.5s ease; // Smooth transition for shadow
       }
     }
   }
@@ -64,10 +84,12 @@ $light-background: rgba(248, 244, 225, 0.8);
   .content {
     flex-direction: column;
     padding: 0px 15px 40px !important;
+
     .contact-form {
       padding-right: 0 !important;
       order: 2;
     }
+
     .image {
       max-width: 100%;
     }
@@ -77,6 +99,7 @@ $light-background: rgba(248, 244, 225, 0.8);
 @media (max-width: 767px) {
 
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -88,8 +111,12 @@ $light-background: rgba(248, 244, 225, 0.8);
 
 @keyframes rotateOnLoad {
   0% {
-    transform: scale(0.9) rotate(0deg);
-    opacity: 0;
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05) rotate(10deg);
+    opacity: 0.9;
   }
   100% {
     transform: scale(1) rotate(0deg);

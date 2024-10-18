@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from '../../Service/cart.service';
 import { Product } from '../../interfaces/product';
 import { CommonModule } from '@angular/common';
@@ -14,9 +15,10 @@ import { RouterLink } from '@angular/router';
 export class CartComponent implements OnInit {
   cartItems: Product[] = [];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
+    // Subscribe to current cart items
     this.cartService.currentCart.subscribe((items: Product[]) => {
       this.cartItems = items;
     });
@@ -57,5 +59,13 @@ export class CartComponent implements OnInit {
       );
     }
     return total;
+  }
+
+  proceedToPayment() {
+    if (this.cartItems.length > 0) {
+      this.router.navigate(['/payment']); // Navigate to the payment page
+    } else {
+      alert('Your cart is empty. Please add items before proceeding to payment.');
+    }
   }
 }
