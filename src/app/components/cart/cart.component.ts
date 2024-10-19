@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
   }
 
   calcTotalPerItem(quantity: number, price: number): number {
-    return price * quantity;
+    return quantity * price;
   }
 
   removeOne(product: Product): void {
@@ -63,7 +63,7 @@ export class CartComponent implements OnInit {
 
   proceedToPayment() {
     if (this.cartItems.length > 0) {
-      this.router.navigate(['/payment']); // Navigate to the payment page
+      this.router.navigate(['user/payment']); // Navigate to 'user/payment' instead of just 'payment'
     } else {
       alert('Your cart is empty. Please add items before proceeding to payment.');
     }

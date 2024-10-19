@@ -39,6 +39,7 @@ $light-background: rgba(248, 244, 225, 0.8);
         color: $light-color !important;
         border-radius: 25px;
         transition: background-color 0.3s ease;
+
         &:hover {
           background-color: $dark-color !important;
         }
@@ -54,10 +55,11 @@ $light-background: rgba(248, 244, 225, 0.8);
         display: block;
         width: 100%;
         height: auto;
-        max-width: 400px;
+        max-width: 250px; // حجم للصوره
         margin: auto;
         animation: rotateOnLoad 2s ease-in-out infinite alternate; // Infinite animation
         border-radius: 10px; // Optional: rounded corners
+
         &:hover {
           opacity: 0.9; // Optional: slightly reduce opacity on hover
         }
@@ -97,7 +99,7 @@ $light-background: rgba(248, 244, 225, 0.8);
 }
 
 @media (max-width: 767px) {
-
+  // يمكنك إضافة تعديلات أخرى هنا إذا لزم الأمر
 }
 
 @keyframes fadeIn {

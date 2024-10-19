@@ -1,5 +1,12 @@
+$section-padding: 90px;
+$dark-color: #543310;
+$alt-dark-color: #74512d;
+$light-color: #f8f4e1;
+$alt-light-color: #af8f6f;
+$button-bg-color: rgb(184, 98, 23);
+$hover-bg-color: rgb(84, 51, 16);
+$card-bg-color: rgba(255, 255, 255, 0.8);
 
-/* Basic Styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f2f2f2;
@@ -11,9 +18,115 @@ body {
   margin: 50px 0 40px;
 }
 
+/* Image Section */
+.image-section {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+
+  .background-image {
+    width: 100%;
+    height: auto;
+    max-height: 600px; // تقليل ارتفاع الصورة
+    object-fit: cover; // الحفاظ على نسبة العرض إلى الارتفاع
+  }
+
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6); // زيادة الشفافية قليلاً
+    padding: 20px;
+    border-radius: 8px;
+    width: 70%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); // إضافة ظل
+  }
+
+  .text-overlay h1 {
+    font-size: 2.5em; // تقليل حجم النص
+    margin-bottom: 20px;
+    color: white;
+  }
+
+  .button-group {
+    a {
+      background-color: $button-bg-color;
+      padding: 10px 20px;
+      border-radius: 25px;
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $hover-bg-color;
+      }
+    }
+  }
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .feature-item {
+    width: 30%;
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: translateY(-5px); // تأثير التحريك عند المرور
+    }
+
+    i {
+      font-size: 3em;
+      color: $button-bg-color;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+/* Categories Section */
+.category-card {
+  background-color: #dfdada; /* خلفية بيضاء */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+  transition: transform 0.3s, box-shadow 0.3s; /* تأثير التحريك */
+  color: black;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* تأثير الظل عند المرور */
+}
+
+.shop-now-btn {
+  background-color: rgb(227, 119, 26);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
 /* Carousel styles */
 .carousel {
-  height: 100vh;
+  height: 60vh; /* Adjust height for less space */
 }
 
 .carousel-inner {
@@ -24,43 +137,28 @@ body {
   height: 100%;
   object-fit: cover;
 }
-
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: rgb(84, 51, 16);
+  background-color: $hover-bg-color;
   border-radius: 50%;
   padding: 10px;
 }
 
-/* Features section */
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Adjust card styles */
+.card {
+  width: 250px; /* Set a fixed width for cards */
+  margin: 0 auto; /* Center the card */
 }
 
-.feature-item {
-  width: 30%;
-  background-color: #fff;
-  padding: 20px;
-  text-align: center;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.feature-item i {
-  font-size: 3em;
-  color: #ff8c00;
-  margin-bottom: 15px;
-}
-
-/* Responsive for smaller devices */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .feature-item {
     width: 45%;
+  }
+  
+  /* Adjust carousel card width for medium screens */
+  .card {
+    width: 150px; /* Smaller width for medium screens */
   }
 }
 
@@ -68,79 +166,9 @@ body {
   .feature-item {
     width: 100%;
   }
+  
+  /* Adjust carousel card width for small screens */
+  .card {
+    width: 100px; /* Even smaller width for small screens */
+  }
 }
-
-/* Image section */
-.image-section {
-  position: relative;
-  text-align: center;
-  color: white;
-}
-
-.background-image {
-  width: 100%;
-  height: auto;
-}
-
-.text-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  border-radius: 8px;
-  width: 70%;
-}
-
-.text-overlay h1 {
-  font-size: 3em;
-  margin-bottom: 40px;
-}
-
-/* Category section */
-.category-card {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.shop-now-btn {
-  padding: 10px 20px;
-  background-color: #ff8c00;
-  border: none;
-  color: white;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.shop-now-btn:hover {
-  background-color: #e67e00;
-}
-
-/* Space between rows */
-.row {
-  margin-bottom: 30px; /* Adds space between the rows */
-}
-
-/* Add space between category cards */
-.category-card {
-  margin-bottom: 30px; /* Space between cards */
-}
-
-.category-card {
-  background-color: rgb(148, 120, 91);
-  padding: 20px; /* Optional: Add padding for better spacing */
-  border-radius: 8px; /* Optional: Add rounded corners */
-  text-align: center; /* Optional: Center align text */
-  color: white; /* Optional: Set text color for better contrast */
-  transition: background-color 0.3s; /* Optional: Smooth transition on hover */
-}
-
-.category-card:hover {
-  background-color: rgb(120, 100, 75); /* Optional: Darker shade on hover */
-}
-

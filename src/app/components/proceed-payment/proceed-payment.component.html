@@ -16,7 +16,7 @@
           <tr *ngFor="let item of cartItems">
             <td>{{ item.name }}</td>
             <td>{{ item.quantity }}</td>
-            <td>{{ calcTotalPerItem(item.quantity, item.price) | currency: 'EGP': 'symbol-narrow' }}</td>
+            <td>{{ calcTotalPerItem(item.quantity, item.discount && item.discount > 0 ? calcDiscount(item.price, item.discount) : item.price) | currency: 'EGP': 'symbol-narrow' }}</td>
           </tr>
           <tr>
             <td><strong>Total</strong></td>
@@ -71,13 +71,12 @@
         <label for="Cash-on-delivery"><i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery</label>
       </div>
     
-  
-
-    <div class="option">
-      <input type="radio" id="Installment" name="payment-method" value="Installment">
-      <label for="Installment"><i class="fa-solid"></i> Installment</label>
+      <div class="option">
+        <input type="radio" id="Installment" name="payment-method" value="Installment">
+        <label for="Installment"><i class="fa-solid"></i> Installment</label>
+      </div>
     </div>
-  </div>
+    
     <!-- Submit Button -->
     <button class="btn submit-btn" (click)="confirmPayment()">Confirm Payment</button>
   </div>

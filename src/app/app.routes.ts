@@ -16,6 +16,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { CakeComponent } from './components/cake/cake.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailComponent } from './components/product-details/product-details.component';
+import { ProceedPaymentComponent } from './components/proceed-payment/proceed-payment.component';
 
 export const routes: Routes = [
   {
@@ -51,17 +52,18 @@ export const routes: Routes = [
       { path: 'contact', component: ContactComponent, title: 'Contact Us' },
       { path: 'cart', component: CartComponent, title: 'Cart' },
       { path: 'product/:id', component: ProductDetailComponent, title: 'Product Details' },
+      {path: 'payment' , component: ProceedPaymentComponent, title :'payment'},
     ],
   },
 
-  // {
-  //   path: '**',
-  //   loadComponent: () =>
-  //     import('./components/notfound/notfound.component').then(
-  //       (m) => m.NotfoundComponent
-  //     ),
-  //   title: 'Not Found',
-  // },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./components/notfound/notfound.component').then(
+        (m) => m.NotfoundComponent
+      ),
+    title: 'Not Found',
+  },
 ];
 
 @NgModule({
