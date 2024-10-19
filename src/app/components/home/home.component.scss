@@ -6,169 +6,255 @@ $alt-light-color: #af8f6f;
 $button-bg-color: rgb(184, 98, 23);
 $hover-bg-color: rgb(84, 51, 16);
 $card-bg-color: rgba(255, 255, 255, 0.8);
+$light-background: rgba(248, 244, 225, 0.8);
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-}
+// body {
+//   font-family: Arial, sans-serif;
+//   background-color: #f2f2f2;
+// }
 
-.section-title {
-  text-align: center;
-  font-size: 2.5em;
-  margin: 50px 0 40px;
-}
+// .section-title {
+//   text-align: center;
+//   font-size: 2.5em;
+//   margin: 50px 0 40px;
+// }
 
 /* Image Section */
-.image-section {
+.landing-section {
+  height: 100vh;
+  width: 100%;
   position: relative;
-  text-align: center;
-  color: white;
-  margin-bottom: 30px;
+  color: $dark-color;
 
-  .background-image {
+  &::after {
+    content: "";
     width: 100%;
-    height: auto;
-    max-height: 600px; // تقليل ارتفاع الصورة
-    object-fit: cover; // الحفاظ على نسبة العرض إلى الارتفاع
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(84, 51, 16, 0.3);
   }
 
-  .text-overlay {
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .text {
     position: absolute;
+    z-index: 2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.6); // زيادة الشفافية قليلاً
-    padding: 20px;
-    border-radius: 8px;
+    text-align: center;
+    background-color: rgba(248, 244, 225, 0.7);
+    padding: 30px;
+    border-radius: 10px;
     width: 70%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); // إضافة ظل
   }
 
-  .text-overlay h1 {
-    font-size: 2.5em; // تقليل حجم النص
-    margin-bottom: 20px;
-    color: white;
+  .text h1 {
+    font-size: 2.5em;
+    margin-bottom: 40px !important;
   }
 
   .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
     a {
-      background-color: $button-bg-color;
-      padding: 10px 20px;
-      border-radius: 25px;
-      color: white;
+      width: 200px;
+      background-color: $alt-dark-color;
+      color: $light-color;
       text-decoration: none;
-      margin: 0 10px;
       transition: background-color 0.3s;
 
       &:hover {
-        background-color: $hover-bg-color;
+        background-color: $dark-color;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .landing-section {
+    .text {
+      width: 75%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .landing-section {
+    .text {
+      width: 100%;
+      border-radius: 0;
+    }
+    .button-group {
+      a {
+        width: 50%;
       }
     }
   }
 }
 
 /* Features Section */
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  max-width: 1200px;
-  margin: 0 auto;
+.features-section {
+  padding-top: $section-padding;
+  padding-bottom: $section-padding;
 
-  .feature-item {
-    width: 30%;
-    background-color: #fff;
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 32px;
 
-    &:hover {
-      transform: translateY(-5px); // تأثير التحريك عند المرور
-    }
+    .feature-item {
+      padding: 22px;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
 
-    i {
-      font-size: 3em;
-      color: $button-bg-color;
-      margin-bottom: 15px;
+      &:hover {
+        transform: translateY(-8px);
+      }
+
+      i {
+        font-size: 48px;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 15px 0;
+        color: $dark-color;
+      }
+      p,
+      i {
+        color: $alt-dark-color;
+      }
     }
   }
 }
+
+@media (max-width: 767px) {
+  .features-section {
+    .features {
+      gap: 20px;
+    }
+    i {
+      font-size: 44px;
+    }
+    h3 {
+      font-size: 26px !important;
+    }
+  }
+}
+/* Ending features-section */
 
 /* Categories Section */
-.category-card {
-  background-color: #dfdada; /* خلفية بيضاء */
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 30px;
-  transition: transform 0.3s, box-shadow 0.3s; /* تأثير التحريك */
-  color: black;
-}
+.categories-section {
+  width: 100%;
+  height: auto;
+  position: relative;
+  padding-top: $section-padding;
+  padding-bottom: $section-padding;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: rgba(84, 51, 16, 0.3);
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+  }
+  .categories {
+    h2 {
+      color: $light-color !important;
+      margin-bottom: 60px !important;
+      &::after {
+        background-color: $light-color !important;
+      }
+    }
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 32px;
+      .category-card {
+        background-color: $light-background;
+        padding: 25px;
+        border-radius: 10px;
+        text-align: center;
+        // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+        color: $dark-color;
 
-.category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* تأثير الظل عند المرور */
-}
+        &:hover {
+          transform: translateY(-8px);
+          // box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* تأثير الظل عند المرور */
+        }
 
-.shop-now-btn {
-  background-color: rgb(227, 119, 26);
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+        button {
+          background-color: $alt-dark-color;
+          color: $light-color;
+          // border: none;
+          // color: white;
+          // padding: 10px 20px;
+          // border-radius: 5px;
+          // cursor: pointer;
+        }
+      }
+    }
+  }
 }
-
+/* Ending categories-section */
 
 /* Carousel styles */
-.carousel {
-  height: 60vh; /* Adjust height for less space */
-}
 
-.carousel-inner {
-  height: 100%;
-}
+.swiper-container {
+  padding-top: $section-padding;
+  padding-bottom: $section-padding;
+  position: relative !important;
+  overflow: hidden;
 
-.carousel-item img {
-  height: 100%;
-  object-fit: cover;
-}
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: $hover-bg-color;
-  border-radius: 50%;
-  padding: 10px;
-}
-
-/* Adjust card styles */
-.card {
-  width: 250px; /* Set a fixed width for cards */
-  margin: 0 auto; /* Center the card */
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .feature-item {
-    width: 45%;
+  .item:hover {
+    box-shadow: none !important;
   }
-  
-  /* Adjust carousel card width for medium screens */
-  .card {
-    width: 150px; /* Smaller width for medium screens */
-  }
-}
 
-@media (max-width: 500px) {
-  .feature-item {
+  .nav-btns {
+    display: flex;
+    justify-content: space-between !important;
     width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    .swiper-button-next,
+    .swiper-button-prev {
+      position: relative !important;
+    }
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 28px !important;
+      color: $dark-color !important;
+    }
   }
-  
-  /* Adjust carousel card width for small screens */
-  .card {
-    width: 100px; /* Even smaller width for small screens */
+}
+
+@media (max-width: 767px) {
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 22px !important;
   }
 }

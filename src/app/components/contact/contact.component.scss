@@ -48,26 +48,26 @@ $light-background: rgba(248, 244, 225, 0.8);
 
     .image {
       flex: 1;
-      position: relative; // Add position relative for shadow
-      overflow: hidden; // Prevent overflow for shadow effect
+      position: relative;
 
       img {
         display: block;
         width: 100%;
         height: auto;
-        max-width: 250px; // حجم للصوره
+        max-width: 250px;
         margin: auto;
-        animation: rotateOnLoad 2s ease-in-out infinite alternate; // Infinite animation
+        transform: scale(1.05);
+        animation: rotateOnLoad 1.2s ease-in-out infinite alternate; // Infinite animation
         border-radius: 10px; // Optional: rounded corners
 
         &:hover {
-          opacity: 0.9; // Optional: slightly reduce opacity on hover
+          opacity: 0.9;
         }
       }
 
       // Shadow effect to give depth
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -94,12 +94,15 @@ $light-background: rgba(248, 244, 225, 0.8);
 
     .image {
       max-width: 100%;
+      padding: 30px 0;
     }
   }
 }
 
 @media (max-width: 767px) {
-  // يمكنك إضافة تعديلات أخرى هنا إذا لزم الأمر
+        img {
+        width: 200px !important;
+      }
 }
 
 @keyframes fadeIn {
@@ -113,15 +116,21 @@ $light-background: rgba(248, 244, 225, 0.8);
 
 @keyframes rotateOnLoad {
   0% {
-    transform: scale(1) rotate(0deg);
+    transform: scale(1) translateY(-15px);
     opacity: 1;
   }
-  50% {
-    transform: scale(1.05) rotate(10deg);
-    opacity: 0.9;
-  }
+
   100% {
-    transform: scale(1) rotate(0deg);
+    transform: scale(1) translateY(15px);
     opacity: 1;
   }
+  // 0% {
+  //   transform: scale(1) rotate(-10deg);
+  //   opacity: 1;
+  // }
+
+  // 100% {
+  //   transform: scale(1.05) rotate(10deg);
+  //   opacity: 1;
+  // }
 }

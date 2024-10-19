@@ -8,11 +8,9 @@ $section-padding: 90px;
   .slide {
     display: flex;
     gap: 30px;
-    opacity: 0; 
-    transform: translateY(20px); 
-    
-    
-    animation: fadeInUp 0.6s forwards; 
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
 
     div {
       width: calc(50% - 15px);
@@ -22,8 +20,11 @@ $section-padding: 90px;
       object-fit: cover;
       width: 100%;
       height: 100%;
-      border-radius: 10px; 
-      transition: transform 0.2s; 
+      border-radius: 10px;
+      transition: transform 0.2s;
+      &:hover {
+        transform: scale(1.02);
+      }
     }
 
     p {
@@ -34,17 +35,11 @@ $section-padding: 90px;
     }
   }
 
- 
   @keyframes fadeInUp {
     to {
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-
-  .slide:hover img {
-    transform: scale(1.05); 
   }
 }
 
@@ -52,7 +47,7 @@ $section-padding: 90px;
   .slide {
     flex-direction: column;
     gap: 24px !important;
-    
+
     div {
       width: 100% !important;
     }
