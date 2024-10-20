@@ -3,21 +3,9 @@ $dark-color: #543310;
 $alt-dark-color: #74512d;
 $light-color: #f8f4e1;
 $alt-light-color: #af8f6f;
-$button-bg-color: rgb(184, 98, 23);
 $hover-bg-color: rgb(84, 51, 16);
 $card-bg-color: rgba(255, 255, 255, 0.8);
 $light-background: rgba(248, 244, 225, 0.8);
-
-// body {
-//   font-family: Arial, sans-serif;
-//   background-color: #f2f2f2;
-// }
-
-// .section-title {
-//   text-align: center;
-//   font-size: 2.5em;
-//   margin: 50px 0 40px;
-// }
 
 /* Image Section */
 .landing-section {
@@ -196,23 +184,21 @@ $light-background: rgba(248, 244, 225, 0.8);
         padding: 25px;
         border-radius: 10px;
         text-align: center;
-        // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s, box-shadow 0.3s;
+        transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
         color: $dark-color;
 
         &:hover {
           transform: translateY(-8px);
-          // box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* تأثير الظل عند المرور */
+          background-color: rgba(248, 244, 225, 0.85);
         }
 
         button {
           background-color: $alt-dark-color;
           color: $light-color;
-          // border: none;
-          // color: white;
-          // padding: 10px 20px;
-          // border-radius: 5px;
-          // cursor: pointer;
+          transition: background-color 0.3s ease;
+          &:hover{
+            background-color: $dark-color;
+          }
         }
       }
     }

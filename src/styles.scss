@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -10,16 +9,18 @@
 @include mat.core();
 
 // Define the theme object.
-$E-commerce-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  ),
-  density: (
-    scale: 0,
+$E-commerce-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    density: (
+      scale: 0,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -155,8 +156,8 @@ input {
   color: $light-color;
 }
 
-
-h1,h2 {
+h1,
+h2 {
   text-align: center;
   color: $dark-color;
   margin: 0 0 50px !important;
@@ -174,7 +175,8 @@ h1,h2 {
 }
 
 @media (max-width: 767px) {
-  h1{
+  h1,
+  h2 {
     font-size: 48px !important;
   }
 }
@@ -182,12 +184,13 @@ h1,h2 {
 .container-xl.product-section {
   padding-top: $section-padding;
   padding-bottom: $section-padding;
+}
 
-  .content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(266px, 1fr));
-    gap: 30px;
-  }
+.product-section .content,
+.cart {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(266px, 1fr));
+  gap: 30px;
 }
 .card {
   border-color: $alt-dark-color;
@@ -244,12 +247,12 @@ h1,h2 {
     font-weight: 500;
     font-size: 20px;
   }
-  a.btn{
+  a.btn {
     display: block;
     width: fit-content;
     font-size: 14px !important;
     margin: 30px auto 10px;
-    padding: 4px 10px ;
+    padding: 4px 10px;
     box-shadow: $dark-color 0px 0px 8px -2px;
     transition: 0.3s ease;
 
@@ -282,7 +285,9 @@ div.edit {
   gap: 12px;
   box-shadow: $dark-color 0px 0px 8px -2px;
   width: fit-content;
+  height: 100%;
   border-radius: 6px;
+  border: none;
   font-size: 20px;
   button {
     color: $dark-color;
@@ -295,5 +300,11 @@ div.edit {
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
