@@ -18,7 +18,7 @@ import { HomeComponent } from './components/home/home.component';
     HomeComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'], // تصحيح هنا
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'Bake House';
