@@ -28,8 +28,15 @@
     </div>
   </div>
   <p><strong>Total Amount: </strong>{{ getTotalPrice() | currency: 'EGP': 'symbol-narrow' }}</p>
-  <button class="btn" (click)="clearCart()">Clear Cart</button>
 
+  <!-- Clear Cart Button -->
+  <button class="btn btn-spacing" (click)="clearCart()" style="background-color: rgb(81,51,16); color: white;">
+    Clear Cart
+  </button>
+  <br>
+  <br>
   <!-- Proceed to Payment Button -->
-  <button class="btn proceed-payment" (click)="proceedToPayment()" style="background-color: rgb(81,51,16); color: white;">Proceed to Payment</button>
-</div>
+  <button class="btn proceed-payment" (click)="proceedToPayment()" style="background-color: rgb(81,51,16); color: white;">
+    Proceed to Payment
+  </button>
+  
