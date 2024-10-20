@@ -8,8 +8,8 @@ $section-padding: 90px;
 $shadow: $dark-color 0px 2px 8px -5px, $alt-light-color 0px 4px 5px 0px,
   #896c50 0px 1px 10px 0px;
 .container-xl {
-  .item {
-    padding: 100px 0;
+  padding: 100px 0;
+  .item-details {
     display: flex;
     // background-color: #eee;
     img {
@@ -30,7 +30,7 @@ $shadow: $dark-color 0px 2px 8px -5px, $alt-light-color 0px 4px 5px 0px,
       justify-content: space-around;
       gap: 15px;
       }
-      
+
       p {
         span {
           padding: 8px 12px;
@@ -54,5 +54,30 @@ $shadow: $dark-color 0px 2px 8px -5px, $alt-light-color 0px 4px 5px 0px,
         }
       }
     }
+  }
+
+  @media (max-width:767px) {
+ .item-details{
+  margin: auto;
+  flex-direction: column !important;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid $dark-color;
+  width: 50%;
+  height: fit-content;
+  border-radius: 10px;
+  img {
+      padding: 40px;
+      width: 100% !important;
+      // width: 32%;
+      // background-color: #777;
+      border: none !important;
+      // border-bottom: 1px solid $dark-color;
+      // padding: 20px 0;
+    }
+     button{
+      margin: auto !important;
+     }
+ }
   }
 
