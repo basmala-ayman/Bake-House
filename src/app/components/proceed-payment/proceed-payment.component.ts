@@ -2,33 +2,36 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
 
-@NgModule({
-  declarations: [ /* your components */ ],
-  imports: [CommonModule, FormsModule], 
-  bootstrap: [ /* your bootstrap component */ ]
-})
-
-export class AppModule {}
-
+// تعريف واجهة CartItem
 interface CartItem {
   name: string;
   quantity: number;
   price: number;
-  discount?: number; 
+  discount?: number; // خصم اختياري
+  image?: string; // لإضافة صورة المنتج
+}
+
+// تعريف واجهة PaymentInfo
+interface PaymentInfo {
+  name: string;
+  email: string;
+  address: string;
+  cardNumber: string;
+  expiry: string;
+  cvv: string;
 }
 
 @Component({
   selector: 'app-proceed-payment',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './proceed-payment.component.html',
   styleUrls: ['./proceed-payment.component.scss']
 })
 export class ProceedPaymentComponent {
   cartItems: CartItem[] = [];
-  payment: { cvv: string } = { cvv: '' };
+  payment: PaymentInfo = { name: '', email: '', address: '', cardNumber: '', expiry: '', cvv: '' };
 
   constructor(private router: Router) {
     const cartItems = localStorage.getItem('cart');
@@ -37,11 +40,11 @@ export class ProceedPaymentComponent {
 
   formatCvv(event: Event) {
     const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // Remove non-digit characters
+    let value = input.value.replace(/\D/g, ''); // إزالة الأحرف غير الرقمية
     if (value.length > 3) {
-      value = value.slice(0, 3); // Limit to 3 digits
+      value = value.slice(0, 3); // تحديد الطول إلى 3 أرقام
     }
-    input.value = value; // Set the formatted value back to the input
+    input.value = value; // تعيين القيمة المنسقة مرة أخرى
   }
 
   getTotalPrice(): number {
@@ -62,35 +65,32 @@ export class ProceedPaymentComponent {
     return price - price * (discount / 100);
   }
 
-  confirmPayment() {
-    console.log('Payment confirmed!'); // Log to check if the method is triggered
-    alert('Payment confirmed! Thank you for your order.');
-    
-    // Clear the cart from localStorage
-    localStorage.removeItem('cart');
-    
-    // Clear the cart array
-    this.cartItems = [];
+  confirmPayment(paymentForm: any) {
+    if (paymentForm.valid) {
+      alert('Payment confirmed! Thank you for your order.');
+      
+      // مسح عربة التسوق من LocalStorage
+      localStorage.removeItem('cart');
+      this.cartItems = [];
 
-    // Navigate to the home page
-    this.router.navigate(['/home']); 
+      // الانتقال إلى الصفحة الرئيسية
+      this.router.navigate(['user/home']); 
+    } else {
+      alert('Please fill in all the required fields.');
+    }
   }
 
   formatExpiryDate(event: Event) {
-    const input = event.target as HTMLInputElement; // Cast the event target to HTMLInputElement
-    let value = input.value.replace(/\D/g, ''); // Remove any non-digit characters
+    const input = event.target as HTMLInputElement; 
+    let value = input.value.replace(/\D/g, '');
 
     if (value.length > 2) {
-        // Format as MM/YY
         const month = value.slice(0, 2);
         const year = value.slice(2, 4);
-
-        // Limit month to 12
         const validMonth = Math.min(parseInt(month), 12).toString().padStart(2, '0');
-
-        value = `${validMonth}/${year}`; // Insert '/' after the first two digits
+        value = `${validMonth}/${year}`;
     }
 
-    input.value = value; // Set the formatted value back to the input
+    input.value = value; // تعيين القيمة المنسقة مرة أخرى
   }
 }
