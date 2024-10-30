@@ -27,11 +27,18 @@ interface PaymentInfo {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './proceed-payment.component.html',
-  styleUrls: ['./proceed-payment.component.scss']
+  styleUrls: ['./proceed-payment.component.scss'],
 })
 export class ProceedPaymentComponent {
   cartItems: CartItem[] = [];
-  payment: PaymentInfo = { name: '', email: '', address: '', cardNumber: '', expiry: '', cvv: '' };
+  payment: PaymentInfo = {
+    name: '',
+    email: '',
+    address: '',
+    cardNumber: '',
+    expiry: '',
+    cvv: '',
+  };
 
   constructor(private router: Router) {
     const cartItems = localStorage.getItem('cart');
@@ -40,25 +47,26 @@ export class ProceedPaymentComponent {
 
   formatCvv(event: Event) {
     const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // إزالة الأحرف غير الرقمية
+    let value = input.value.replace(/\D/g, '');
     if (value.length > 3) {
-      value = value.slice(0, 3); // تحديد الطول إلى 3 أرقام
+      value = value.slice(0, 3);
     }
-    input.value = value; // تعيين القيمة المنسقة مرة أخرى
+    input.value = value;
   }
 
   getTotalPrice(): number {
     return this.cartItems.reduce((total, item) => {
-      const quantity = item.quantity ?? 0; 
-      const price = item.discount && item.discount > 0
-        ? this.calcDiscount(item.price, item.discount) 
-        : item.price; 
-      return total + this.calcTotalPerItem(quantity, price); 
+      const quantity = item.quantity ?? 0;
+      const price =
+        item.discount && item.discount > 0
+          ? this.calcDiscount(item.price, item.discount)
+          : item.price;
+      return total + this.calcTotalPerItem(quantity, price);
     }, 0);
   }
 
   calcTotalPerItem(quantity: number, price: number): number {
-    return quantity * price; 
+    return quantity * price;
   }
 
   calcDiscount(price: number, discount: number): number {
@@ -68,29 +76,29 @@ export class ProceedPaymentComponent {
   confirmPayment(paymentForm: any) {
     if (paymentForm.valid) {
       alert('Payment confirmed! Thank you for your order.');
-      
-      // مسح عربة التسوق من LocalStorage
+
       localStorage.removeItem('cart');
       this.cartItems = [];
 
-      // الانتقال إلى الصفحة الرئيسية
-      this.router.navigate(['user/home']); 
+      this.router.navigate(['user/home']);
     } else {
-      alert('Please fill in all the required fields.');
+      alert('Please, fill in all the required fields!');
     }
   }
 
   formatExpiryDate(event: Event) {
-    const input = event.target as HTMLInputElement; 
+    const input = event.target as HTMLInputElement;
     let value = input.value.replace(/\D/g, '');
 
     if (value.length > 2) {
-        const month = value.slice(0, 2);
-        const year = value.slice(2, 4);
-        const validMonth = Math.min(parseInt(month), 12).toString().padStart(2, '0');
-        value = `${validMonth}/${year}`;
+      const month = value.slice(0, 2);
+      const year = value.slice(2, 4);
+      const validMonth = Math.min(parseInt(month), 12)
+        .toString()
+        .padStart(2, '0');
+      value = `${validMonth}/${year}`;
     }
 
-    input.value = value; // تعيين القيمة المنسقة مرة أخرى
+    input.value = value;
   }
 }

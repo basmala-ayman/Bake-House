@@ -3,177 +3,180 @@ $dark-color: #543310;
 $alt-dark-color: #74512d;
 $light-color: #f8f4e1;
 $alt-light-color: #af8f6f;
+$light-background: rgba(248, 244, 225, 0.8);
+$section-padding: 90px;
 
-// Main container for the payment section
-.payment-section {
-  background-color: $light-color; // Light background for the whole section
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  max-width: 1200px;
-  margin: 2rem auto;
+.container-xl {
+  padding-top: $section-padding;
+  padding-bottom: $section-padding;
 
-  h1 {
-    font-size: 2.5rem;
-    color: $dark-color; // Primary color
+  h3 {
+    font-size: 1.8rem;
+    color: $dark-color;
+    margin-bottom: 40px;
     text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  // Order summary table styling
-  .order-summary {
-    margin-bottom: 2rem;
-
-    h2 {
-      font-size: 1.8rem;
-      color: $dark-color; // Updated to use dark color
-      margin-bottom: 1rem;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 1rem;
-
-      th, td {
-        padding: 0.75rem 1rem;
-        border: 1px solid #ddd;
-        text-align: left;
-      }
-
-      th {
-        background-color: $dark-color; // Updated to use dark color
-        color: #fff;
-        font-weight: bold;
-      }
-
-      td {
-        background-color: #fff;
-      }
-
-      // Total row styling
-      tr:last-child {
-        td {
-          font-weight: bold;
-          background-color: $alt-light-color; // Use alternate light color for total row
-        }
-      }
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 3px;
+      width: 100px;
+      background-color: $dark-color;
     }
   }
 
-  // Billing information form styling
-  .billing-info {
-    margin-bottom: 2rem;
-
-    h2 {
-      font-size: 1.8rem;
-      color: $dark-color; // Updated to use dark color
-      margin-bottom: 1rem;
+  .payment-section {
+    background-color: $light-background;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 1200px;
+    padding: 45px 30px;
+    @media (max-width: 767px) {
+      padding: 25px 15px;
     }
+    .order-summary {
+      margin-bottom: 2rem;
 
-    form {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); // Adjusted to responsive columns
-      gap: 1rem;
-
-      .form-group {
-        display: flex;
-        flex-direction: column;
+      table {
+        width: 100%;
+        border-collapse: collapse;
         margin-bottom: 1rem;
 
-        label {
-          font-weight: bold;
-          margin-bottom: 0.5rem;
-          color: #666;
+        th,
+        td {
+          padding: 12px;
+          border: 1px solid $alt-light-color;
+          text-align: left;
+          @media (max-width: 767px) {
+            padding: 10px;
+          }
         }
 
-        input {
-          padding: 0.75rem; // Increased padding for better touch target
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          font-size: 1rem; // Increased font size for better readability
-          width: 100%; // Full width for input fields
+        th {
+          background-color: $alt-dark-color;
+          color: $light-color;
+          font-weight: 500;
+        }
 
-          &:focus {
-            outline: none;
-            border-color: $dark-color; // Focused input border color
+        td {
+          background-color: #fff;
+          color: $dark-color;
+        }
+
+        tr:last-child {
+          td {
+            font-weight: 500 !important;
+            background-color: $alt-dark-color;
+            color: $light-color;
           }
         }
       }
-
-      // Make the form responsive for smaller screens
-      @media (max-width: 768px) {
-        grid-template-columns: 1fr; // Stack fields on smaller screens
-      }
-    }
-  }
-
-  // Payment options styling
-  .payment-options {
-    margin-bottom: 2rem;
-
-    h2.payment-title {
-      text-align: center; 
-      font-size: 1.8rem;
-      color: $dark-color; // Updated to use dark color
-      margin-bottom: 1rem;
     }
 
-    .option {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
+    .billing-info {
+      form {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
 
-      input {
-        margin-right: 0.5rem;
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          label {
+            font-weight: bold;
+            color: $dark-color;
+          }
+
+          input {
+            padding: 10px;
+            border: 1px solid $alt-light-color;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+
+            &:focus {
+              outline: none;
+              border-color: $dark-color;
+            }
+          }
+        }
+
+        @media (max-width: 991px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 767px) {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+
+    .payment-options {
+      grid-column: 1 / span 3;
+
+      @media (max-width: 991px) {
+        grid-column: 1 / span 2;
+      }
+      @media (max-width: 767px) {
+        grid-column: 1 / span 1;
       }
 
-      label {
-        font-size: 1.2rem;
-        color: $alt-dark-color; // Use alternate dark color for labels
+      h2.payment-title {
+        text-align: center;
+        font-size: 1.8rem;
+        color: $dark-color;
+        margin-bottom: 1rem;
+      }
+
+      .option {
         display: flex;
         align-items: center;
-
-        i {
-          margin-right: 0.5rem;
-        }
-      }
-    }
-
-    // Add responsive styling for smaller screens
-    @media (max-width: 768px) {
-      .option {
-        flex-direction: column; // Change to vertical layout
-        align-items: flex-start; // Align items to the start
+        gap: 8px;
         margin-bottom: 1rem;
 
-        input {
-          margin-bottom: 0.5rem; // Add space below radio buttons
+        label {
+          font-size: 1.2rem;
+          color: $alt-dark-color;
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          gap: 8px;
+          i {
+            line-height: 24px;
+          }
         }
       }
     }
-  }
 
-  // Submit button styling with adjustments
-  .submit-btn {
-    width: 100%; // Full width for the button
-    height: 50px; // Adjusted height for better fit
-    padding: 0.75rem; // Adjusted padding
-    font-size: 1rem; // Font size remains the same
-    background-color: $dark-color; // Primary color
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    // Submit button styling with adjustments
+    .submit-btn {
+      color: $light-color;
+      grid-column: 2;
+      background-color: $alt-dark-color;
+      padding: 10px 16px !important;
 
-    &:hover {
-      background-color: darken($dark-color, 10%);
+      &:hover {
+        background-color: $dark-color;
+      }
+      @media (max-width: 991px) {
+        grid-column: 1 / span 2;
+        width: 50%;
+        margin: auto !important;
+      }
+      @media (max-width: 767px) {
+        grid-column: 1;
+        width: 100%;
+      }
     }
-  }
 
-  // Error message styling
-  .error-message {
-    color: red;
-    font-size: 0.875rem; // Reduced font size for error messages
+    // Error message styling
+    .error-message {
+      color: red;
+      font-size: 0.875rem; // Reduced font size for error messages
+    }
   }
 }

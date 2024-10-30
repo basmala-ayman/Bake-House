@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { authGuard } from './Guard/auth.guard';
-import { AuthLayoutComponent } from './Layouts/auth-layout/auth-layout.component'; // استيراد المكون
+import { AuthLayoutComponent } from './Layouts/auth-layout/auth-layout.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
@@ -17,6 +16,7 @@ import { CakeComponent } from './components/cake/cake.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailComponent } from './components/product-details/product-details.component';
 import { ProceedPaymentComponent } from './components/proceed-payment/proceed-payment.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 export const routes: Routes = [
   {
@@ -51,17 +51,18 @@ export const routes: Routes = [
       { path: 'about', component: AboutComponent, title: 'About' },
       { path: 'contact', component: ContactComponent, title: 'Contact Us' },
       { path: 'cart', component: CartComponent, title: 'Cart' },
-      { path: 'product/:id', component: ProductDetailComponent, title: 'Product Details' },
-      {path: 'payment' , component: ProceedPaymentComponent, title :'payment'},
+      {
+        path: 'product/:id',
+        component: ProductDetailComponent,
+        title: 'Product Details',
+      },
+      { path: 'payment', component: ProceedPaymentComponent, title: 'Payment' },
     ],
   },
 
   {
     path: '**',
-    loadComponent: () =>
-      import('./components/notfound/notfound.component').then(
-        (m) => m.NotfoundComponent
-      ),
+    component: NotfoundComponent,
     title: 'Not Found',
   },
 ];
