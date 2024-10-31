@@ -1,33 +1,43 @@
-# Bake House E-commerce Platform
+# Bake House E-Commerce Website
 
-Welcome to the **Bake House** project! This is a modern e-commerce platform designed to provide users with a seamless online shopping experience for delicious baked goods. Explore a variety of products, enjoy an intuitive user interface, and shop conveniently from the comfort of your home.
+Welcome to the Bake House project! This is a dynamic e-commerce website designed for a bakery, offering a variety of delicious products. The site aims to provide an engaging shopping experience, showcasing a range of items from cakes to chocolates.
 
 ## Table of Contents
 - [Features](#features)
+- [Main Pages](#main-pages)
 - [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
-- **User-Friendly Interface**: Intuitive design that enhances user experience with easy navigation.
-- **Product Display**: Showcase a wide variety of baked goods with beautiful images and detailed descriptions.
-- **Shopping Cart**: Users can easily add, remove, and adjust quantities of products in their shopping cart.
-- **Responsive Design**: The website is fully responsive and looks great on all devices, including desktops, tablets, and smartphones.
-- **Dynamic Product Filtering**: Filter products based on categories to help users find what they need quickly.
-- **Pagination**: Efficiently display products with pagination, allowing users to browse through large inventories seamlessly.
-- **Product Slider**: Highlight featured products using a visually appealing swiper slider that captures attention.
-- **Local Storage**: Persist cart data across sessions using local storage, ensuring a smooth shopping experience.
+- **User Authentication**: Smooth login and registration processes for users.
+- **Product Display**: Various categories including cakes, chocolates, and bakery items.
+- **Shopping Cart**: Users can easily add products and manage their cart.
+- **Secure Payment Options**: Ensuring user trust and security during transactions.
+- **Responsive Design**: Optimized for mobile and desktop devices.
+- **Offers Page**: Discover the latest deals and discounts.
+- **About Us Page**: Sharing our mission to spread joy through delicious treats.
+- **Contact Us Page**: For any inquiries or support.
+
+## Main Pages
+
+- **Login & Register Pages**: Create an account or log in to access more features.
+- **Home Page**: A welcoming experience with an overview of what we offer.
+- **Products Section**: A detailed view of all product categories.
+- **Offers Page**: Stay updated with the latest deals.
+- **About Us**: Information about our mission and values.
+- **Contact Us**: Reach out for any inquiries or support.
+- **Shopping Cart**: Review and manage all selected items.
 
 ## Technologies Used
 
 - **Frontend**:
+  - **HTML5**: For structuring the content of the website.
+  - **SCSS**: For styling and enhancing the design of the website.
+  - **Bootstrap**: For responsive layout and UI components.
+  - **TypeScript**: For writing robust and scalable code.
   - **Angular**: For building a dynamic and responsive single-page application (SPA).
-  - **Bootstrap**: For responsive design and layout.
+  - **Angular Material**: For UI components that follow Material Design guidelines.
   - **Swiper.js**: For implementing smooth and interactive product sliders.
-  - **SASS**: For styling with nested rules and variables, enhancing CSS organization.
 
 - **Backend**:
   - **No Backend Used**: Data is currently managed using local arrays without API integration for demo purposes.
