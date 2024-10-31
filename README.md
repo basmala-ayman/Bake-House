@@ -1,27 +1,33 @@
-# ECommerce
+# Bake House E-commerce Platform
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
+Welcome to the **Bake House** project! This is a modern e-commerce platform designed to provide users with a seamless online shopping experience for delicious baked goods. Explore a variety of products, enjoy an intuitive user interface, and shop conveniently from the comfort of your home.
 
-## Development server
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- **User-Friendly Interface**: Intuitive design that enhances user experience with easy navigation.
+- **Product Display**: Showcase a wide variety of baked goods with beautiful images and detailed descriptions.
+- **Shopping Cart**: Users can easily add, remove, and adjust quantities of products in their shopping cart.
+- **Responsive Design**: The website is fully responsive and looks great on all devices, including desktops, tablets, and smartphones.
+- **Dynamic Product Filtering**: Filter products based on categories to help users find what they need quickly.
+- **Pagination**: Efficiently display products with pagination, allowing users to browse through large inventories seamlessly.
+- **Product Slider**: Highlight featured products using a visually appealing swiper slider that captures attention.
+- **Local Storage**: Persist cart data across sessions using local storage, ensuring a smooth shopping experience.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+- **Frontend**:
+  - **Angular**: For building a dynamic and responsive single-page application (SPA).
+  - **Bootstrap**: For responsive design and layout.
+  - **Swiper.js**: For implementing smooth and interactive product sliders.
+  - **SASS**: For styling with nested rules and variables, enhancing CSS organization.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Backend**:
+  - **No Backend Used**: Data is currently managed using local arrays without API integration for demo purposes.
